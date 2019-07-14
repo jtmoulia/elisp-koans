@@ -1,0 +1,30 @@
+* elisp-koans
+
+** What is elisp-koans?
+   
+   =elisp-koans= helps you learn [[info:elisp:Introduction][Emacs Lisp]] (elisp) via test-driven development.
+   You're provided with suites of tests describing components of the elisp
+   syntax and environment. Fixing the tests provides a tutorial of elisp.
+   
+   These koans are for those learning to code in Emacs Lisp and customize Emacs.
+
+** Usage
+
+   Create a clone of this repository:
+
+   #+BEGIN_SRC sh
+     git clone https://github.com/jtmoulia/elisp-koans
+   #+END_SRC
+
+** Credits
+
+   =elisp-koans= is adapted from Google's [[https://github.com/google/lisp-koans][Common Lisp Koans]], which was in turn
+   inspired by the family of TDD Koans, e.g. [[http://rubykoans.com/][Ruby Koans]] and [[https://github.com/gregmalcolm/python_koans][Python Koans]].
+
+** License
+   
+   The Common Lisp Koan's were modified under the terms of the Apache License.
+
+   =elisp-koans= uses the [[file:LICENSE][Apache License]].
+   
+
