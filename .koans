@@ -6,4 +6,7 @@
   special-forms
   lists
   equality-distinctions
+  strings
+  functions
+  lexical-bindings
 )

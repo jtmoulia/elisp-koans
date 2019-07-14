@@ -14,7 +14,7 @@
 ;;
 ;;   Adapted from google/lisp-koans:koans/vectors.lisp
 
-;; Relevant emacs info page: `(info "(cl)Vectors")'
+;; Relevant emacs info page: `(info "(elisp)Vectors")'
 
 (elisp-koans/define-test test-vector-types
   "`[x y z]' defines a vector literal containing x y z"

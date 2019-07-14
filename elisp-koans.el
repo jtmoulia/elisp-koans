@@ -48,20 +48,24 @@
 
 (defun elisp-koans/assert-false (arg)
   "Assert ARG is false, raising an error if not."
-  (assert-true (not arg)))
+  (elisp-koans/assert-true (not arg)))
 
 
 (defun elisp-koans/assert-equal (left right)
   "Assert LEFT equals RIGHT. Uses `equal' for comparison."
-  (assert-true (equal left right)))
+  (elisp-koans/assert-true (equal left right)))
+
+
+(defun elisp-koans/assert-eq (left right)
+  "Assert LEFT equals RIGHT. Uses `eq' for comparison."
+  (elisp-koans/assert-true (eq left right)))
 
 
 (defun elisp-koans/true-or-false? (left right)
   "Assert LEFT equals RIGHT. Uses `equal' for comparison."
   (if left
-      (assert-true right)
-    (assert-false right)))
-
+      (elisp-koans/assert-true right)
+    (elisp-koans/assert-false right)))
 
 
 (defmacro elisp-koans/define-test (name &rest form)
@@ -77,15 +81,19 @@
        (message (format "SUCCESS! %s" ,test-descriptor)))))
 
 
-(defun elisp-koans/load-koan-group (group)
+(defun elisp-koans//load-koan-group (group)
   "Load a koan group from `elisp-koans--groups-directory'."
   (let* ((file-name (concat (symbol-name group) ".el"))
          (file-path (concat (file-name-as-directory elisp-koans--groups-directory) file-name)))
     (load-file file-path)))
 
 
-(dolist (koan-group elisp-koans--koan-groups)
-  (load-koan-group koan-group))
+(defun elisp-koans/run ()
+  "Run the koans."
+  (interactive)
+  (dolist (koan-group elisp-koans--koan-groups)
+    (elisp-koans//load-koan-group koan-group)))
+
 
 (provide 'elisp-koans)
 
