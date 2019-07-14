@@ -16,6 +16,28 @@
      git clone https://github.com/jtmoulia/elisp-koans
    #+END_SRC
 
+   Open up [[file:koans/asserts.el::(elisp-koans/define-test][koans/asserts.el]] and navigate to the first test:
+
+   #+BEGIN_SRC emacs-lisp
+     (elisp-koans/define-test
+      assert-true
+      "t is true.  Replace the blank with a t"
+      (elisp-koans/assert-true ___))
+   #+END_SRC
+
+   Fix the test by replacing the blank (=___=) with the appropriate value, in
+   this case =t= as described in the docstring:
+
+   #+BEGIN_SRC emacs-lisp
+     (elisp-koans/assert-true t)
+   #+END_SRC
+
+   Once the test is fixed, run all the tests by evaluating =emacs-koans/run=.
+   The test results will be inserted into a buffer named
+   =*elisp-koans-results*=, and the =assert-true= test should be passing as
+   indicated by =DONE=. You're ready to move on to the remaining tests, which
+   are organized to provide a tour through Emacs Lisp.
+   
 ** Credits
 
    =elisp-koans= is adapted from Google's [[https://github.com/google/lisp-koans][Common Lisp Koans]], which was in turn

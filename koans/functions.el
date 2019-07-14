@@ -32,14 +32,14 @@
      between the two is that local functions defined with LABELS may refer
      to themselves, whereas local functions defined with FLET may not."
    (elisp-koans/assert-eq 18 (elisp-koans/add 7 11))
-   "flet binds a function to a name within a lexical environment"
-   (flet ((elisp-koans/add (a b) (* a b)))
+   "`cl-flet' binds a function to a name within a lexical environment"
+   (cl-flet ((elisp-koans/add (a b) (* a b)))
      (elisp-koans/assert-equal ___ (elisp-koans/add 7 11)))
    (elisp-koans/assert-equal ___  (elisp-koans/add 7 11)))
 
 
 ; borrowed from Common Lisp The Language chapter 5.2.2
-(defun func-with-opt-params (&optional (a 2) (b 3) )
+(cl-defun func-with-opt-params (&optional (a 2) (b 3) )
   ; each optional parameter has a form like (var default-val)
   (list a b))
 
@@ -53,7 +53,7 @@
 ;; ----
 
 
-(defun func-with-opt-params-and-indication (&optional (a 2 a?) (b 3 b?))
+(cl-defun func-with-opt-params-and-indication (&optional (a 2 a?) (b 3 b?))
   (list a a? b b?))
 
 (elisp-koans/define-test test-optional-parameters-with-indication
@@ -82,44 +82,47 @@
 ;; ----
 
 
-(defun func-with-key-params (&key a b)
+(cl-defun cl-defun-with-key-params (&key a b)
+  "Return keyword arguments A and B as a list."
   (list a b))
 
 (elisp-koans/define-test test-key-params ()
   "Key params allow the user to specify params in any order"
-   (elisp-koans/assert-equal (func-with-key-params) ___)
-   (elisp-koans/assert-equal (func-with-key-params :a 11 :b 22) ___)
+   (elisp-koans/assert-equal (cl-defun-with-key-params) ___)
+   (elisp-koans/assert-equal (cl-defun-with-key-params :a 11 :b 22) ___)
    ; it is not necessary to specify all key parameters
-   (elisp-koans/assert-equal (func-with-key-params :b 22) ___)
+   (elisp-koans/assert-equal (cl-defun-with-key-params :b 22) ___)
    ; order is not important
-   (elisp-koans/assert-equal (func-with-key-params :b 22 :a 0) ___))
+   (elisp-koans/assert-equal (cl-defun-with-key-params :b 22 :a 0) ___))
 
-(defun func-key-params-can-have-defaults (&key  (a 3 a?) (b 4 b?))
-  (list a a? b b?))
+
+(cl-defun cl-defun-key-params-can-have-defaults (&key  (a 3) (b 4))
+  "Return keyword arguments A and B as a list."
+  (list a b))
 
 (elisp-koans/define-test test-key-params-can-have-defaults
     "key parameters can have defaults also"
-   (elisp-koans/assert-equal (func-key-params-can-have-defaults) ____)
-   (elisp-koans/assert-equal (func-key-params-can-have-defaults :a 3 :b 4) ___)
-   (elisp-koans/assert-equal (func-key-params-can-have-defaults :a 11 :b 22) ___)
-   (elisp-koans/assert-equal (func-key-params-can-have-defaults :b 22) ___)
+   (elisp-koans/assert-equal (cl-defun-key-params-can-have-defaults) ____)
+   (elisp-koans/assert-equal (cl-defun-key-params-can-have-defaults :a 3 :b 4) ___)
+   (elisp-koans/assert-equal (cl-defun-key-params-can-have-defaults :a 11 :b 22) ___)
+   (elisp-koans/assert-equal (cl-defun-key-params-can-have-defaults :b 22) ___)
    ; order is not important
-   (elisp-koans/assert-equal (func-key-params-can-have-defaults :b 22 :a 0) ___))
+   (elisp-koans/assert-equal (cl-defun-key-params-can-have-defaults :b 22 :a 0) ___))
 
 
 ;; ----
 
 
 ;; borrowed from common lisp the language 5.2.2
-(defun func-with-funky-parameters (a &rest x &key b (c a))
+(cl-defun cl-defun-with-funky-parameters (a &rest x &key b (c a))
    (list a b c x))
 
 (elisp-koans/define-test test-many-kinds-params
     "CL provides the programmer with more than enough rope to hang himself."
-   (elisp-koans/assert-equal (func-with-funky-parameters 1) ___)
-   (elisp-koans/assert-equal (func-with-funky-parameters 1 :b 2) ___)
-   (elisp-koans/assert-equal (func-with-funky-parameters 1 :b 2 :c 3) ___)
-   (elisp-koans/assert-equal (func-with-funky-parameters 1 :c 3 :b 2) ___))
+   (elisp-koans/assert-equal (cl-defun-with-funky-parameters 1) ___)
+   (elisp-koans/assert-equal (cl-defun-with-funky-parameters 1 :b 2) ___)
+   (elisp-koans/assert-equal (cl-defun-with-funky-parameters 1 :b 2 :c 3) ___)
+   (elisp-koans/assert-equal (cl-defun-with-funky-parameters 1 :c 3 :b 2) ___))
 
 
 ;; Note that &rest parameters have to come before &key parameters.
@@ -140,45 +143,21 @@
     (push (lambda (a b) (- a b)) list-of-functions)
     (elisp-koans/assert-equal ___ (funcall (second list-of-functions) 2 33))))
 
-(elisp-koans/define-test test-lambdas-can-have-optional-params
-   (elisp-koans/assert-equal ___ ((lambda (a &optional (b 100)) (+ a b)) 10 9))
-   (elisp-koans/assert-equal ___ ((lambda (a &optional (b 100)) (+ a b)) 10)))
-
 
 ; returns sign x
-(defun sign-of (x)
-  (if (< x 0) (return-from sign-of -1))
-  (if (eq x 0) (return-from sign-of 0))
-  1)
+;; (defun sign-of (x)
+;;   (if (< x 0) (return-from sign-of -1))
+;;   (if (eq x 0) (return-from sign-of 0))
+;;   1)
 
-(elisp-koans/define-test test-return-from-function-early
-   (elisp-koans/assert-equal (sign-of -5.5) ___)
-   (elisp-koans/assert-equal (sign-of 0) ___)
-   (elisp-koans/assert-equal (sign-of ___) 1))
-
-
-;; ----
-
-
-;; Lambdas create "lexical closures", meaning that the resulting function, when
-;; called, will execute in an environment wherein the lexical bindings to all
-;; referred to names still apply.
-;; This example from "Common Lisp The Language" Ch. 7
-
-(defun adder (x)
-  "The result of (adder n) is a nameless function with one parameter.
-  This function will add n to its argument."
-  (lambda (y) (+ x y)))
-
-(elisp-koans/define-test test-lexical-closure-over-adder ()
-  (let ((add-100 (adder 100))
-        (add-500 (adder 500)))
-  "add-100 and add-500 now refer to different bindings to x"
-   (elisp-koans/assert-equal ___ (funcall add-100 3))
-   (elisp-koans/assert-equal ___ (funcall add-500 3))))
+;; (elisp-koans/define-test test-return-from-function-early
+;;    (elisp-koans/assert-equal (sign-of -5.5) ___)
+;;    (elisp-koans/assert-equal (sign-of 0) ___)
+;;    (elisp-koans/assert-equal (sign-of ___) 1))
 
 
 ;; ----
+
 
 
 
