@@ -5,7 +5,10 @@
   atoms-vs-lists
   special-forms
   lists
+  vectors
+  multiple-values
   equality-distinctions
+  hash-tables
   strings
   functions
 )

@@ -12,14 +12,15 @@
 (defconst ____ elisp-koans--blank)
 (defconst elisp-koans--groups-directory (expand-file-name "koans/")
   "Directory where the elisp koan groups are stored")
-(defvar elisp-koans--koan-groups (with-current-buffer (find-file-noselect ".koans")
-                                   (goto-char (point-min))
-                                   (read (current-buffer)))
-  "List of koan groups")
 (defvar elisp-koans-result-buffer-name "*elisp-koans-results*"
   "Name of the elisp-koans result buffer")
 
 ;; helpers
+
+(defun elisp-koans//get-koan-groups ()
+  (with-current-buffer (find-file-noselect ".koans")
+    (goto-char (point-min))
+    (read (current-buffer))))
 
 (defun elisp-koans//format-buffer ()
   (org-indent-region (point-min) (point-max))
@@ -168,16 +169,19 @@
     (load-file file-path)))
 
 
-(defun elisp-koans/run ()
+(defun elisp-koans/run (&optional koans)
   "Run the koans, clear the results buffer and insert results."
   (interactive)
   (elisp-koans//switch-to-results-buffer)
   (erase-buffer)
   (elisp-koans//org-insert-section "Emacs Lisp Koans")
-  (dolist (koan-group elisp-koans--koan-groups)
+  (dolist (koan-group (elisp-koans//get-koan-groups))
     ;; TODO add section headers
     (elisp-koans//org-insert-section (concat (symbol-name koan-group) " koan group") :level 2)
     (elisp-koans//load-koan-group koan-group)
+    (with-current-buffer (find-file-noselect ".koans")
+      (goto-char (point-min))
+      (read (current-buffer)))
     (end-of-buffer))
   (elisp-koans//format-buffer))
 
