@@ -16,7 +16,9 @@
      git clone https://github.com/jtmoulia/elisp-koans
    #+END_SRC
 
-   Open up [[file:koans/asserts.el::(elisp-koans/define-test][koans/asserts.el]] and navigate to the first test:
+   First load [[file:elisp-koans.el][elisp-koans.el]] by opening it in Emacs then running =eval-buffer=.
+
+   Next open up [[file:koans/asserts.el::(elisp-koans/define-test][koans/asserts.el]] and navigate to the first test:
 
    #+BEGIN_SRC emacs-lisp
      (elisp-koans/define-test
@@ -32,7 +34,7 @@
      (elisp-koans/assert-true t)
    #+END_SRC
 
-   Once the test is fixed, run all the tests by evaluating =emacs-koans/run=.
+   Once the test is fixed, run all the tests by evaluating =elisp-koans/run=.
    The test results will be inserted into a buffer named
    =*elisp-koans-results*=, and the =assert-true= test should be passing as
    indicated by =DONE=. You're ready to move on to the remaining tests, which
