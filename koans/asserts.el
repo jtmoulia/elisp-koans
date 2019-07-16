@@ -12,7 +12,7 @@
 ;;   See the License for the specific language governing permissions and
 ;;   limitations under the License.
 ;;
-;;   Adapted from google/lisp-koans:koans/asserts.lisp
+;;   Adapted from google/lisp-koans:koans/asserts.lsp
 
 (elisp-koans/define-test
  assert-true

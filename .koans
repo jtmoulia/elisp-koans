@@ -6,9 +6,14 @@
   special-forms
   lists
   vectors
-  multiple-values
   equality-distinctions
   hash-tables
-  strings
   functions
+  strings
+  control-statements
+  iteration
+  mapcar-and-reduce
+  cl-loops
+  cl-multiple-values
+  cl-structures
 )

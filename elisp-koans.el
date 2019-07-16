@@ -147,7 +147,7 @@
   "Define a test called NAME with DESCRIPTION a body of FORM.."
   (let* ((body (seq-filter (lambda (elt) (not (stringp elt))) form))
          (descriptors (seq-map #'elisp-koans//string-strip-newlines (seq-filter #'stringp form)))
-         (description (concat "Advice: " (car descriptors)))
+         (description (if descriptors (concat "Advice: " (car descriptors))))
          (test-name (symbol-name name))
          (level 3))
     `(progn
@@ -156,7 +156,9 @@
        (if-let ((result (catch 'assertion ,@body)))
            (elisp-koans//org-replace-or-insert-section
             ,test-name (concat ,test-name " has damaged your karma")
-            :prefix "TODO" :body (concat  ,description "\n\n" result) :level ,level)
+            :prefix "TODO"
+            :body (if ,description (concat ,description "\n\n" result) result)
+            :level ,level)
          (elisp-koans//org-replace-or-insert-section
           ,test-name (concat ,test-name " has expanded your awareness")
           :body ,description :prefix "DONE" :level ,level)))))
@@ -176,12 +178,8 @@
   (erase-buffer)
   (elisp-koans//org-insert-section "Emacs Lisp Koans")
   (dolist (koan-group (elisp-koans//get-koan-groups))
-    ;; TODO add section headers
     (elisp-koans//org-insert-section (concat (symbol-name koan-group) " koan group") :level 2)
     (elisp-koans//load-koan-group koan-group)
-    (with-current-buffer (find-file-noselect ".koans")
-      (goto-char (point-min))
-      (read (current-buffer)))
     (end-of-buffer))
   (elisp-koans//format-buffer))
 
