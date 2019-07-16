@@ -45,4 +45,18 @@ are true (t) or false (nil)"
  (elisp-koans/true-or-false? ___ (equal 34 34))
  (elisp-koans/true-or-false? ___ (equal 19 78)))
 
+
+(elisp-koans/define-test
+ test-true-or-false
+ "sometimes you will be asked to evaluate whether statements
+are true (t) or false (nil)"
+ (elisp-koans/true-or-false? ___ (equal 34 34))
+ (elisp-koans/true-or-false? ___ (equal 19 78)))
+
+(elisp-koans/define-test
+ test-assert-throws
+ "sometimes you're asked whether a form throws an particular type of error"
+ (elisp-koans/assert-throws 'first-error ___ (throw 'first-error "error!"))
+ (elisp-koans/assert-throws ___ "still an error" (throw 'second-error "still an error")))
+
 ;;; asserts.el ends here

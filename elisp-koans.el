@@ -14,6 +14,34 @@
   "Directory where the elisp koan groups are stored")
 (defvar elisp-koans-result-buffer-name "*elisp-koans-results*"
   "Name of the elisp-koans result buffer")
+(defvar elisp-koans-groups
+  '(
+    asserts
+    nil-false-empty
+    evaluation
+    atoms-vs-lists
+    special-forms
+    lists
+    vectors
+    equality-distinctions
+    hash-tables
+    functions
+    strings
+    control-statements
+    iteration
+    mapcar-and-reduce
+    format
+
+    ;; cl-koans
+    cl-loops
+    cl-multiple-values
+    cl-structures
+
+    ;; projects
+    triangle-project
+    scoring-project
+    )
+  "List of elisp-koans which are run by default.")
 
 ;; helpers
 
@@ -143,6 +171,11 @@
     (elisp-koans/assert-false right)))
 
 
+(defmacro elisp-koans/assert-throws (error-tag error-message &rest form)
+  "Assert that an error tagged ERROR-TAG is thrown by FORM."
+  `(elisp-koans/assert-equal ,error-message (catch ,error-tag ,@form)))
+
+
 (defmacro elisp-koans/define-test (name &rest form)
   "Define a test called NAME with DESCRIPTION a body of FORM.."
   (let* ((body (seq-filter (lambda (elt) (not (stringp elt))) form))
@@ -177,7 +210,7 @@
   (elisp-koans//switch-to-results-buffer)
   (erase-buffer)
   (elisp-koans//org-insert-section "Emacs Lisp Koans")
-  (dolist (koan-group (elisp-koans//get-koan-groups))
+  (dolist (koan-group elisp-koans-groups)
     (elisp-koans//org-insert-section (concat (symbol-name koan-group) " koan group") :level 2)
     (elisp-koans//load-koan-group koan-group)
     (end-of-buffer))
