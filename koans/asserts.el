@@ -14,49 +14,36 @@
 ;;
 ;;   Adapted from google/lisp-koans:koans/asserts.lsp
 
-(elisp-koans/define-test
- assert-true
- "t is true.  Replace the blank with a t"
- (elisp-koans/assert-true ___))
+(elisp-koans/deftest
+ elisp-koans/asserts-true ()
+ "`t' is true. Replace the blank with `t' to assert it is true"
+ (should ___))
+
+(elisp-koans/deftest
+ elisp-koans/asserts-false ()
+ "`nil' is false. Replace the blank with `nil' to assert it is not true"
+ (should-not ___))
 
 
-(elisp-koans/define-test
- assert-false
- "nil is false"
- (elisp-koans/assert-false ___))
+(elisp-koans/deftest
+ elisp-koans/asserts-fill-in-the-blank ()
+ "sometimes you will need to fill in the blank of an expression"
+ (should (eq ___ 2)))
 
 
-(elisp-koans/define-test
- fill-in-the-blank
- "sometimes you will need to fill the blank to complete"
- (elisp-koans/assert-equal ___ 2))
+(elisp-koans/deftest
+ elisp-koans/asserts-eq-true-or-false ()
+ "a test might contain multiple statements"
+ (should (eq ___ (equal 34 34)))
+ (should (eq ___ (equal 19 78))))
 
 
-(elisp-koans/define-test
- fill-in-the-blank-string
- "you might be asked if the blank is `equal' to another argument"
- (elisp-koans/assert-equal ___ "hello world"))
-
-
-(elisp-koans/define-test
- test-true-or-false
- "sometimes you will be asked to evaluate whether statements
-are true (t) or false (nil)"
- (elisp-koans/true-or-false? ___ (equal 34 34))
- (elisp-koans/true-or-false? ___ (equal 19 78)))
-
-
-(elisp-koans/define-test
- test-true-or-false
- "sometimes you will be asked to evaluate whether statements
-are true (t) or false (nil)"
- (elisp-koans/true-or-false? ___ (equal 34 34))
- (elisp-koans/true-or-false? ___ (equal 19 78)))
-
-(elisp-koans/define-test
- test-assert-throws
- "sometimes you're asked whether a form throws an particular type of error"
- (elisp-koans/assert-throws 'first-error ___ (throw 'first-error "error!"))
- (elisp-koans/assert-throws ___ "still an error" (throw 'second-error "still an error")))
+(elisp-koans/deftest
+ elisp-koans/asserts-should-error ()
+ "try filling out the type of error, in this case an `\'arith-error'"
+ (should-error (/ 1 0) :type ___)
+ ;; TODO add assert
+ ;; (elisp-koans/assert-throws ___ "still an error" (throw 'second-error "still an error"))
+ )
 
 ;;; asserts.el ends here

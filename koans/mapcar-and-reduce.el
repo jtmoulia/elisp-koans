@@ -14,14 +14,14 @@
 ;;
 ;;   google/lisp-koans:koans/mapcar-and-reduce.lsp
 
-(elisp-koans/define-test
-  test-mapcar-basics
-  "We can apply a function to each member of a list using mapcar."
-  (defun times-two (x) (* x 2))
-  (elisp-koans/assert-equal ____ (mapcar #'times-two '(1 2 3)))
-  (elisp-koans/assert-equal ____ (mapcar #'first '((3 2 1)
-                                      ("little" "small" "tiny")
-                                      ("pigs" "hogs" "swine")))))
+(elisp-koans/deftest
+ elisp-koans/mapcar-basics ()
+ "apply a function to each member of a list using `mapcar'"
+ (defun times-two (x) (* x 2))
+ (should (equal ____ (mapcar #'times-two '(1 2 3))))
+ (should (equal ____ (mapcar #'first '((3 2 1)
+                                       ("little" "small" "tiny")
+                                       ("pigs" "hogs" "swine"))))))
 
 
 ;; TODO: fix for 2-arg elisp mapcar
@@ -44,25 +44,26 @@
 ;;                                         ("are" "thirsty")))))
 
 
-(elisp-koans/define-test test-reduce-basics
-    "The reduce function combines the elements
-     of a list, from left to right, by applying
-     a binary function to the list elements."
-  (elisp-koans/assert-equal ___  (reduce #'+ '(1 2 3 4)))
-  (elisp-koans/assert-equal ___ (reduce #'expt '(2 3 2))))
+(elisp-koans/deftest
+ elisp-koans/reduce-basics ()
+ "The `reduce 'function combines the elements of a list, from left to right,
+by applying a binary function to the list elements."
+  (should (equal ___  (reduce #'+ '(1 2 3 4))))
+  (should (equal ___ (reduce #'expt '(2 3 2)))))
 
 
-(elisp-koans/define-test test-reduce-right-to-left
-    "The keyword :from-end allows us to apply
-     reduce from right to left."
-  (elisp-koans/assert-equal ___ (reduce #'+ '(1 2 3 4) :from-end t))
-  (elisp-koans/assert-equal ___ (reduce #'expt '(2 3 2) :from-end t)))
+(elisp-koans/deftest
+ elisp-koans/reduce-right-to-left ()
+ "The keyword :from-end allows us to apply reduce from right to left."
+ (elisp-koans/assert-equal ___ (reduce #'+ '(1 2 3 4) :from-end t))
+ (elisp-koans/assert-equal ___ (reduce #'expt '(2 3 2) :from-end t)))
 
 
-(elisp-koans/define-test test-reduce-with-initial-value
-    "We can supply an initial value to reduce."
-  (elisp-koans/assert-equal ___ (reduce #'expt '(10 21 34 43) :initial-value 1))
-  (elisp-koans/assert-equal ___ (reduce #'expt '(10 21 34 43) :initial-value 0)))
+(elisp-koans/deftest
+ elisp-koans/reduce-with-initial-value ()
+ "`reduce' accepts an optional initial value to reduce"
+ (elisp-koans/assert-equal ___ (reduce #'expt '(10 21 34 43) :initial-value 1))
+ (elisp-koans/assert-equal ___ (reduce #'expt '(10 21 34 43) :initial-value 0)))
 
 
 ;; TODO: fix for 2-arg elisp mapcar
@@ -78,3 +79,5 @@
 ;;     (reduce #'WRONG-FUNCTION-2 (mapcar #'WRONG-FUNCTION-3 x y)))
 ;;   (elisp-koans/assert-equal 32 (inner '(1 2 3) '(4 5 6)))
 ;;   (elisp-koans/assert-equal 310 (inner '(10 20 30) '(4 3 7))))
+
+;; mapcar-and-reduce.el ends here

@@ -19,79 +19,92 @@
 ;; the most common equality predicates are eq, eql, equal and equalp
 ;; eq is similar to comparing c pointers
 
-(elisp-koans/define-test test-eq
-  "(eq x y) is true if and only if x and y are the same identical object
+(elisp-koans/deftest
+ elisp-koans/equality-distinctions-test-eq ()
+ "(eq x y) is true if and only if x and y are the same identical object
 eq is like comparing pointers in c.  If the values are EQ, any non-nil
 value may be returned."
-  (elisp-koans/true-or-false? ___ (eq 'a 'a))
-  (elisp-koans/true-or-false? ___ (eq 3 3.0))
-  (elisp-koans/true-or-false? ___ (eq '(1 2) '(1 2)))
-  (elisp-koans/true-or-false? ___ (eq "Foo" "Foo"))
-  (elisp-koans/true-or-false? ___ (eq "Foo" (copy-seq "Foo")))
-  (elisp-koans/true-or-false? ___ (eq "FOO" "Foo")))
+ (should (eq ___ (eq 'a 'a)))
+ (should (eq ___ (eq 3 3)))
+ (should (eq ___ (eq 3 3.0)))
+ (should (eq ___ (eq '(1 2) '(1 2))))
+ (should (eq ___ (eq "Foo" "Foo")))
+ (should (eq ___ (eq "Foo" (copy-seq "Foo"))))
+ (should (eq ___ (eq "FOO" "Foo"))))
 
-(elisp-koans/define-test test-eql
-  "(eql x y) is true if (eq x y) also it is true if x and y are
+
+(elisp-koans/deftest
+ elisp-koans/equality-distinctions-test-eql ()
+ "(eql x y) is true if (eq x y) also it is true if x and y are
 numeric of the same type and represent the same number.
 (eql x y) also if x and y are the same characters."
-  (elisp-koans/true-or-false? ___ (eql 'a 'a))
-  (elisp-koans/true-or-false? ___ (eql 3 3))
-  (elisp-koans/true-or-false? ___ (eql 3 3.0))
-  (elisp-koans/true-or-false? ___ (eql '(1 2) '(1 2)))
-  (elisp-koans/true-or-false? ___ (eql  '(:a . :b) '(:a . :b)))
-  (elisp-koans/true-or-false? ___ (eql ?S ?S))
-  (elisp-koans/true-or-false? ___ (eql "Foo" "Foo"))
-  (elisp-koans/true-or-false? ___ (eql "Foo" (copy-seq "Foo")))
-  (elisp-koans/true-or-false? ___ (eql "FOO" "Foo")))
+ (should (eq ___ (eql 'a 'a)))
+ (should (eq ___ (eql 3 3)))
+ (should (eq ___ (eql 3 3.0)))
+ (should (eq ___ (eql '(1 2) '(1 2))))
+ (should (eq ___ (eql '(a b) '(a b))))
+ (should (eq ___ (eql ?S ?S)))
+ (should (eq ___ (eql "Foo" "Foo")))
+ (should (eq ___ (eql "Foo" (copy-seq "Foo"))))
+ (should (eq ___ (eql "FOO" "Foo"))))
 
-(elisp-koans/define-test test-equal
+
+(elisp-koans/deftest
+ elisp-koans/equality-distinctions-test-equal ()
   "(equal x y) is true if (eql x y), or
 x and y are lists with equal elements, or
 x and y character or bit arrays with equal elements"
-  (elisp-koans/true-or-false? ___ (equal 'a 'a))
-  (elisp-koans/true-or-false? ___ (equal 3 3))
-  (elisp-koans/true-or-false? ___ (equal 3 3.0))
-  (elisp-koans/true-or-false? ___ (equal '(1 2) '(1 2)))
-  (elisp-koans/true-or-false? ___ (equal  '(:a . :b) '(:a . :b)))
-  (elisp-koans/true-or-false? ___ (equal  '(:a . :b) '(:a . :doesnt-match)))
-  (elisp-koans/true-or-false? ___ (equal ?S ?S))
-  (elisp-koans/true-or-false? ___ (equal "Foo" "Foo"))
-  (elisp-koans/true-or-false? ___ (equal "Foo" (copy-seq "Foo")))
-  (elisp-koans/true-or-false? ___ (equal "FOO" "Foo")))
+  (should (eq ___ (equal 'a 'a)))
+  (should (eq ___ (equal 3 3)))
+  (should (eq ___ (equal 3 3.0)))
+  (should (eq ___ (equal '(1 2) '(1 2))))
+  (should (eq ___ (equal '(a b) '(a b))))
+  (should (eq ___ (equal '(a b) '(a doesnt-match))))
+  (should (eq ___ (equal ?S ?S)))
+  (should (eq ___ (equal "Foo" "Foo")))
+  (should (eq ___ (equal "Foo" (copy-seq "Foo"))))
+  (should (eq ___ (equal "FOO" "Foo"))))
 
-(elisp-koans/define-test test-equalp
-  "(equalp x y) if (equal x y) or
+
+(elisp-koans/deftest
+ elisp-koans/equality-distinctions-test-equalp ()
+ "(equalp x y) if (equal x y) or
 if x and y are strings with the same characters (case independent).
 if x and y are arrays with the same dimensions and equal elements
 if x and y are numeric of different types but one may be upgraded to
 the other type without loss and still exhibit equality."
-  (elisp-koans/true-or-false? ___ (equalp 'a 'a))
-  (elisp-koans/true-or-false? ___ (equalp 3 3))
-  (elisp-koans/true-or-false? ___ (equalp 3 3.0))
-  (elisp-koans/true-or-false? ___ (equalp '(1 2) '(1 2)))
-  (elisp-koans/true-or-false? ___ (equalp  '(:a . :b) '(:a . :b)))
-  (elisp-koans/true-or-false? ___ (equalp  '(:a . :b) '(:a . :doesnt-match)))
-  (elisp-koans/true-or-false? ___ (equalp ?S ?S))
-  (elisp-koans/true-or-false? ___ (equalp "Foo" "Foo"))
-  (elisp-koans/true-or-false? ___ (equalp "Foo" (copy-seq "Foo")))
-  (elisp-koans/true-or-false? ___ (equalp "FOO" "Foo")))
+ (should (eq ___ (equalp 'a 'a)))
+ (should (eq ___ (equalp 3 3)))
+ (should (eq ___ (equalp 3 3.0)))
+ (should (eq ___ (equalp '(1 2) '(1 2))))
+ (should (eq ___ (equalp  '(a b) '(a b))))
+ (should (eq ___ (equalp  '(a b) '(a doesnt-match))))
+ (should (eq ___ (equalp ?S ?S)))
+ (should (eq ___ (equalp "Foo" "Foo")))
+ (should (eq ___ (equalp "Foo" (copy-seq "Foo"))))
+ (should (eq ___ (equalp "FOO" "Foo"))))
 
-(elisp-koans/define-test test-numeric-equal
-  "(= x y) is only for numerics
+
+(elisp-koans/deftest
+ elisp-koans/equality-distinctions-test-numeric-equal ()
+ "(= x y) is only for numerics
 and can take multiple arguments
 if x or y is not numeric there will be a compiler error."
-  (elisp-koans/true-or-false? ___ (= 99.0 99 99.000))
-  (elisp-koans/true-or-false? ___ (= 0 1 -1))
-  (elisp-koans/true-or-false? ___ (= (/ 2 3) (/ 6 9) (/ 86 129))))
+ (should (eq ___ (= 99.0 99 99.000)))
+ (should (eq ___ (= 0 1 -1)))
+ (should (eq ___ (= (/ 2 3) (/ 6 9) (/ 86 129)))))
+
 
 ;; EQ, EQL, EQUAL, and EQUALP are general equality predicates.
 ;; Additionally, Lisp also provides the type-specific predicates.
 ;; For example, STRING= and STRING-EQUAL are predicates for strings.
-(elisp-koans/define-test test-string-equal
-  "string-equal is just like string= except that differences in case are ignored."
-  (elisp-koans/true-or-false? ___ (string= "Foo" "Foo"))
-  (elisp-koans/true-or-false? ___ (string= "Foo" "FOO"))
-  (elisp-koans/true-or-false? ___ (string= "together" "frog" :start1 1 :end1 3 :start2 2))
-  (elisp-koans/true-or-false? ___ (string-equal "Foo" "FOO")))
+
+(elisp-koans/deftest
+ elisp-koans/equality-distinctions-test-string-equal ()
+ "string-equal is just like string= except that differences in case are ignored."
+ (elisp-koans/true-or-false? ___ (string= "Foo" "Foo"))
+ (elisp-koans/true-or-false? ___ (string= "Foo" "FOO"))
+ (elisp-koans/true-or-false? ___ (string= "together" "frog" :start1 1 :end1 3 :start2 2))
+ (elisp-koans/true-or-false? ___ (string-equal "Foo" "FOO")))
 
 ;;; equality-distinctions.el ends here

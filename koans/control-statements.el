@@ -14,64 +14,68 @@
 ;;
 ;;   Adapted from google/lisp-koans:koans/control-statements.lsp
 
-(elisp-koans/define-test
-  test-if-then-else
-  "=if= statements allow you to execute one statement or another based on a
+(elisp-koans/deftest
+ elisp-koans/control-statements-test-if-then-else ()
+ "`if' statements allow you to execute one statement or another based on a
 conditional"
-  (let ((result))
-    (if t
-        (setf result "true value")
-      (setf result "false value"))
-    (elisp-koans/assert-equal result ____)
-    (if nil
-        (setf result "true value")
-      (setf result "false value"))
-    (elisp-koans/assert-equal result ____)))
+ (let ((result))
+   (if t
+       (setf result "true value")
+     (setf result "false value"))
+   (should (equal result ___))
+   (if nil
+       (setf result "true value")
+     (setf result "false value"))
+   (should (equal result ___))))
 
 
-(elisp-koans/define-test
- test-when-and-unless
-  "=when= and =unless= allow you to execute multiple forms based on condition"
-  (let ((result-1 nil)
-        (result-2 nil)
-        (when-nums nil)
-        (unless-nums nil))
-    (dolist (x '(1 2 3 4 5 6 7 8 9 10))
-      (when (> x 5)
-        (setf result-1 x)
-        (push x when-nums))
-      (unless (> x 5)
-        (setf result-2 x)
-        (push x unless-nums)))
-    (elisp-koans/assert-equal result-1 ___)
-    (elisp-koans/assert-equal result-2 ___)
-    (elisp-koans/assert-equal when-nums ___)
-    (elisp-koans/assert-equal unless-nums ___)))
+(elisp-koans/deftest
+ elisp-koans/control-statements-test-when-and-unless ()
+ "`when' and `unless' allow you to execute multiple forms based on condition"
+ (let ((result-1 nil)
+       (result-2 nil)
+       (when-nums nil)
+       (unless-nums nil))
+   (dolist (x '(1 2 3 4 5 6 7 8 9 10))
+     (when (> x 5)
+       (setf result-1 x)
+       (push x when-nums))
+     (unless (> x 5)
+       (setf result-2 x)
+       (push x unless-nums)))
+   (should (equal result-1 ___))
+   (should (equal result-2 ___))
+   (should (equal when-nums ___))
+   (should (equal unless-nums ___))))
 
 
-(elisp-koans/define-test
- test-and-short-circuits
- "[[info:elisp#Conditionals][and]] only evaluates forms until one evaluates to nil"
- (elisp-koans/assert-equal
-  ___
-  (let ((x 0))
-    (and
-     (setf x (+ 1 x))
-     (setf x (+ 1 x))
-     nil ;; <- ends execution of and.
-     (setf x (+ 1 x)))
-    x)))
+(elisp-koans/deftest
+ elisp-koans/control-statements-test-and-short-circuits ()
+ "`and' only evaluates forms until one evaluates to `nil'"
+ (should
+  (equal
+   ___
+   (let ((x 0))
+     (and
+      (setf x (+ 1 x))
+      (setf x (+ 1 x))
+      nil ;; <- ends execution of and.
+      (setf x (+ 1 x)))
+     x))))
 
 
-(elisp-koans/define-test
- test-or-also-short-circuits
- "[[info:elisp#Conditionals][or]] only evaluates until one argument evaluates to non-nil"
- (elisp-koans/assert-equal
-  ___
-  (let ((x 0))
-    (or
-     (setf x (+ 1 x))
-     (setf x (+ 1 x))
-     nil
-     (setf x (+ 1 x)))
-    x)))
+(elisp-koans/deftest
+ elisp-koans/control-statements-test-or-also-short-circuits ()
+ "`or' only evaluates until one argument evaluates to non-nil"
+ (should
+  (equal
+   ___
+   (let ((x 0))
+     (or
+      (setf x (+ 1 x))
+      (setf x (+ 1 x))
+      nil
+      (setf x (+ 1 x)))
+     x))))
+
+;; control-statements.el ends here

@@ -4,7 +4,7 @@
    
    =elisp-koans= helps you learn [[info:elisp:Introduction][Emacs Lisp]] (elisp) via test-driven development.
    You're provided with suites of tests describing components of the elisp
-   syntax and environment. Fixing the tests provides a tutorial of elisp.
+   syntax and environment. Fixing the tests leads you on a tutorial of elisp.
    
    These koans are for those learning to code in Emacs Lisp and customize Emacs.
 
@@ -21,10 +21,10 @@
    Next open up [[file:koans/asserts.el::(elisp-koans/define-test][koans/asserts.el]] and navigate to the first test:
 
    #+BEGIN_SRC emacs-lisp
-     (elisp-koans/define-test
-      assert-true
-      "t is true.  Replace the blank with a t"
-      (elisp-koans/assert-true ___))
+     (elisp-koans/deftest
+      elisp-koans/asserts-true ()
+      "`t' is true. Replace the blank with `t' to assert it is true"
+      (should ___))
    #+END_SRC
 
    Fix the test by replacing the blank (=___=) with the appropriate value, in
@@ -34,11 +34,12 @@
      (elisp-koans/assert-true t)
    #+END_SRC
 
-   Once the test is fixed, run all the tests by evaluating =elisp-koans/run=.
-   The test results will be inserted into a buffer named
-   =*elisp-koans-results*=, and the =assert-true= test should be passing as
-   indicated by =DONE=. You're ready to move on to the remaining tests, which
-   are organized to provide a tour through Emacs Lisp.
+   Once the test is fixed, run it by evaluating =ert= and selecting the test,
+   =elisp-koans/asserts-true=. This will use ERT to run the test and report the
+   result.
+   
+   You're ready to move on to the remaining tests, which are organized to
+   provide a tour of Emacs Lisp.
    
 ** Credits
 

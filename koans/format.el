@@ -12,7 +12,7 @@
 ;;   See the License for the specific language governing permissions and
 ;;   limitations under the License.
 ;;
-;;   Adapted from google/lisp-koans:koans/format.el
+;;   Adapted from google/lisp-koans:koans/format.lsp
 
 
 ;; FORMAT is lisp's counterpart to the c function printf. Refer to
@@ -26,39 +26,41 @@
 ;; specifies the format, where format specifier will be replaced by
 ;; formatting the rest of the parameters.
 
-(elisp-koans/define-test
- test-format-with-plain-text
-  "If there is no format specifier, FORMAT just returns the string
-   itself."
-  (elisp-koans/assert-equal ___ (format "this is plain text.")))
+(elisp-koans/deftest
+ elisp-koans/format-with-plain-text ()
+ "If there is no format specifier, FORMAT just returns the string itself."
+ (should (equal ___ (format "this is plain text."))))
 
-(elisp-koans/define-test test-format-with-general-specifier
-  "%s is a general specifier that translates to the print form of a
+
+(elisp-koans/deftest
+ elisp-koans/format-with-general-specifier ()
+ "%s is a general specifier that translates to the print form of a
 parameter."
-  (elisp-koans/assert-equal ___ (format "%s" 42))
-  (elisp-koans/assert-equal ___ (format "%s" ?C))
-  (elisp-koans/assert-equal ___ (format "%s %s" "multiple" 'arguments))
-  (elisp-koans/assert-equal ___ (format "%s" "galaxy far far away"))
-  ;; %s can also translate to list
-  ;; and parameters to FORMAT are passed by value
-  (elisp-koans/assert-equal ___
-                (format "%s evaluates to %s"
-                        '(/ 8 (- 3 (/ 8 3)))
-                        (/ 8 (- 3 (/ 8 3))))))
+ (should (equal ___ (format "%s" 42)))
+ (should (equal ___ (format "%s" ?C)))
+ (should (equal ___ (format "%s %s" "multiple" 'arguments)))
+ (should (equal ___ (format "%s" "galaxy far far away")))
+ ;; %s can also translate to list
+ ;; and parameters to FORMAT are passed by value
+ (should (equal ___ (format "%s evaluates to %s"
+                            '(/ 8 (- 3 (/ 8 3)))
+                            (/ 8 (- 3 (/ 8 3)))))))
 
-(elisp-koans/define-test
- format-numeric-control-sequences
+
+(elisp-koans/deftest
+ elisp-koans/format-numeric-control-sequences ()
  "=format= accepts other numeric control sequences"
  "=%d= specifies a decimal number"
- (elisp-koans/assert-equal ___ (format "%d" 42))
- (elisp-koans/assert-equal ___ (format "%d" #o52))
- (elisp-koans/assert-equal ___ (format "%d" #x2A))
+ (should (equal ___ (format "%d" 42)))
+ (should (equal ___ (format "%d" #o52)))
+ (should (equal ___ (format "%d" #x2A)))
  "=%o= specifies a decimal number"
- (elisp-koans/assert-equal ___ (format "%o" 42))
+ (should (equal ___ (format "%o" 42)))
  "=%x= specifies a hex number with capital characters"
- (elisp-koans/assert-equal ___ (format "%x" 42))
+ (should (equal ___ (format "%x" 42)))
  "=%X= specifies a hex number with capital characters"
- (elisp-koans/assert-equal ___ (format "%X" 42))
+ (should (equal ___ (format "%X" 42)))
  "=%f= specifies a decimal decimal point number"
- (elisp-koans/assert-equal ___ (format "%f" 42))
- )
+ (should (equal ___ (format "%f" 42))))
+
+;; format.el ends here

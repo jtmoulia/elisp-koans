@@ -16,38 +16,42 @@
 
 ;; Relevant emacs info page: `(info "(elisp)Cons Cell Type")'
 
-(elisp-koans/define-test test-list-or-atom
-  "Lists in lisp are forms beginning and ending with rounded parentheses.
-   Atoms are symbols, numbers, or other forms usually separated by
-   white-space or parentheses.  The function 'listp' will return true if
-   the input is a list.  The function 'atom' will return true if the
-   input is an atom."
-  (elisp-koans/true-or-false? ___ (listp '(1 2 3)))
-  (elisp-koans/true-or-false? ___ (atom '(1 2 3)))
+(elisp-koans/deftest
+ elisp-koans/atoms-vs-lists-list-or-atom ()
+ "Lists in lisp are forms beginning and ending with rounded parentheses.
+Atoms are symbols, numbers, or other forms usually separated by
+white-space or parentheses.  The function 'listp' will return true if
+the input is a list.  The function 'atom' will return true if the
+input is an atom."
+ (should (eq ___ (listp '(1 2 3))))
+ (should (eq ___ (atom '(1 2 3))))
 
-  (elisp-koans/true-or-false? ___ (listp '("heres" "some" "strings")))
-  (elisp-koans/true-or-false? ___ (atom '("heres" "some" "strings")))
+ (should (eq ___ (listp '("heres" "some" "strings"))))
+ (should (eq ___ (atom '("heres" "some" "strings"))))
 
-  (elisp-koans/true-or-false? ___ (listp "a string"))
-  (elisp-koans/true-or-false? ___ (atom "a string"))
+ (should (eq ___ (listp "a string")))
+ (should (eq ___ (atom "a string")))
 
-  (elisp-koans/true-or-false? ___ (listp 2))
-  (elisp-koans/true-or-false? ___ (atom 2))
+ (should (eq ___ (listp 2)))
+ (should (eq ___ (atom 2)))
 
-  (elisp-koans/true-or-false? ___ (listp '(("first" "list") ("second" "list"))))
-  (elisp-koans/true-or-false? ___ (atom '(("first" "list") ("second" "list")))))
-
-
-(elisp-koans/define-test test-empty-list-is-both-list-and-atom
-  "the empty list, nil, is unique in that it is both a list and an atom"
-  (elisp-koans/true-or-false? ___ (listp nil))
-  (elisp-koans/true-or-false? ___ (atom nil)))
+ (should (eq ___ (listp '(("first" "list") ("second" "list")))))
+ (should (eq ___ (atom '(("first" "list") ("second" "list"))))))
 
 
-(elisp-koans/define-test test-keywords
-  "symbols like :hello or :like-this are treated differently in lisp.
-   Called keywords, they are symbols that evaluate to themselves."
-  (elisp-koans/true-or-false? ___ (equal :this-is-a-keyword :this-is-a-keyword))
-  (elisp-koans/true-or-false? ___ (equal :this-is-a-keyword ':this-is-a-keyword)))
+(elisp-koans/deftest
+ elisp-koans/atoms-vs-lists-test-empty-list-is-both-list-and-atom ()
+ "the empty list, nil, is unique in that it is both a list and an atom"
+ (should (eq ___ (listp nil)))
+ (should (eq ___ (atom nil))))
+
+
+(elisp-koans/deftest
+ elisp-koans/atoms-vs-lists-test-keywords ()
+ "symbols like :hello or :like-this are treated differently in lisp.
+Called keywords, they are symbols that evaluate to themselves."
+ (should (eq ___ (eq :this-is-a-keyword :this-is-a-keyword)))
+ (should (eq ___ (eq :this-is-a-keyword ':this-is-a-keyword)))
+ (should (eq ___ (eq :this-is-a-keyword 'this-is-a-keyword))))
 
 ;;; atoms-vs-lists.el ends here

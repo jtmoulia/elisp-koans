@@ -54,56 +54,56 @@
   :write-me)
 
 
-(elisp-koans/define-test
- test-score-of-an-empty-list-is-zero
+(elisp-koans/deftest
+ elisp-koans/test-score-of-an-empty-list-is-zero ()
  "The score of an empty list is 0."
- (elisp-koans/assert-equal 0 (score nil)))
+ (should (eq 0 (score nil))))
 
 
-(elisp-koans/define-test
- test-score-of-a-single-roll-of-5-is-50
+(elisp-koans/deftest
+ elisp-koans/test-score-of-a-single-roll-of-5-is-50 ()
  "The score of a single five is 50."
- (elisp-koans/assert-equal 50 (score '(5))))
+ (should (eq 50 (score '(5)))))
 
 
-(elisp-koans/define-test
- test-score-of-a-single-roll-of-1-is-100
+(elisp-koans/deftest
+ elisp-koans/test-score-of-a-single-roll-of-1-is-100 ()
  "The score of a single role of one is 100."
- (elisp-koans/assert-equal 100 (score '(1))))
+ (should (eq 100 (score '(1)))))
 
 
-(elisp-koans/define-test
- test-score-of-multiple-1s-and-5s-is-the-sum-of-individual-scores
+(elisp-koans/deftest
+ elisp-koans/test-score-of-multiple-1s-and-5s-is-the-sum-of-individual-scores ()
  "The score of multiple ones and fives is the sum of the individual scores."
- (elisp-koans/assert-equal 300 (score '(1 5 5 1))))
+ (should (eq 300 (score '(1 5 5 1)))))
 
 
-(elisp-koans/define-test
- test-score-of-single-2s-3s-4s-and-6s-is-zero
+(elisp-koans/deftest
+ elisp-koans/test-score-of-single-2s-3s-4s-and-6s-is-zero ()
  "The score of single twos, threes, fours, and sixes is zero"
- (elisp-koans/assert-equal 0 (score '(2 3 4 6))))
+ (should (eq 0 (score '(2 3 4 6)))))
 
 
-(elisp-koans/define-test
- test-score-of-a-triple-1-is-1000
+(elisp-koans/deftest
+ elisp-koans/test-score-of-a-triple-1-is-1000 ()
  "The score of a triple one is 1000."
- (elisp-koans/assert-equal 1000  (score '(1 1 1))))
+ (should (eq 1000  (score '(1 1 1)))))
 
 
-(elisp-koans/define-test
- test-score-of-other-triples-is-100x
+(elisp-koans/deftest
+ elisp-koans/test-score-of-other-triples-is-100x ()
  "The score of three of the same is 100x"
- (elisp-koans/assert-equal 200  (score '(2 2 2)))
- (elisp-koans/assert-equal 300  (score '(3 3 3)))
- (elisp-koans/assert-equal 400  (score '(4 4 4)))
- (elisp-koans/assert-equal 500  (score '(5 5 5)))
- (elisp-koans/assert-equal 600  (score '(6 6 6))))
+ (should (equal 200  (score '(2 2 2))))
+ (should (equal 300  (score '(3 3 3))))
+ (should (equal 400  (score '(4 4 4))))
+ (should (equal 500  (score '(5 5 5))))
+ (should (equal 600  (score '(6 6 6)))))
 
 
-(elisp-koans/define-test
- test-score-of-mixed-is-sum
+(elisp-koans/deftest
+ elisp-koans/test-score-of-mixed-is-sum ()
  "Sum the score of a mixture to get the total."
- (elisp-koans/assert-equal 250  (score '(2 5 2 2 3)))
- (elisp-koans/assert-equal 550  (score '(5 5 5 5))))
+ (should (equal 250  (score '(2 5 2 2 3))))
+ (should (equal 550  (score '(5 5 5 5)))))
 
 ;; scoring-project.el ends here
