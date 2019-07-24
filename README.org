@@ -7,6 +7,9 @@
    syntax and environment. Fixing the tests leads you on a tutorial of elisp.
    
    These koans are for those learning to code in Emacs Lisp and customize Emacs.
+   You should already be able to make your way around Emacs plus be able to
+   call interactive functions, evaluate code in the buffer, and look up
+   documentation.
 
 ** Usage
 
@@ -31,16 +34,18 @@
    this case =t= as described in the docstring:
 
    #+BEGIN_SRC emacs-lisp
-     (elisp-koans/assert-true t)
+     (should t)
    #+END_SRC
 
-   Once the test is fixed, run it by evaluating =ert= and selecting the test,
-   =elisp-koans/asserts-true=. This will use ERT to run the test and report the
-   result.
+   Once the test is fixed evaluate the test and then run it by calling =ert= and
+   selecting the test: =elisp-koans/asserts-true=. ERT will run the test and
+   report the result.
    
-   You're ready to move on to the remaining tests, which are organized to
-   provide a tour of Emacs Lisp.
+   You're ready to move on to the remaining tests in =koans/asserts.el= and
+   beyond. The variable =elisp-koans-groups= lists the remaining suites of koans
+   which are ordered to provide a tour of Emacs Lisp.
    
+   To quickly load all of the tests call the interactive function 
 ** Credits
 
    =elisp-koans= is adapted from Google's [[https://github.com/google/lisp-koans][Common Lisp Koans]], which was in turn
