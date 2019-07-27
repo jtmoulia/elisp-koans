@@ -70,7 +70,7 @@ This wraps `ert-deftest' with a check for blanks."
         form)))
 
 
-(defun elisp-koans/load-koan-groups (&optional koans)
+(defun elisp-koans/load-groups (&optional koans)
   "Load KOANS from the groups specified in `elisp-koans-groups'."
   (interactive)
   (dolist (koan-group elisp-koans-groups)
