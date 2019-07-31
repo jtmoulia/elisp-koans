@@ -120,6 +120,9 @@ caller is asked for the koan group to test."
   (ert-run-tests-interactively test))
 
 
+;;;###autoload
+(defalias 'elisp-koans 'elisp-koans/run-tests)
+
 (provide 'elisp-koans)
 
 ;;; elisp-koans.el ends here
