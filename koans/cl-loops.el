@@ -83,10 +83,10 @@
          (cl-loop for letter in letters by #'cddr collect letter))
         (loop-result-in-cdddr
          (cl-loop for letter in letters by #'cdddr collect letter)))
-   (should (equal loop-result-in ____))
-   (should (equal loop-result-in-cdr ____))
-   (should (equal loop-result-in-cddr ____))
-   (should (equal loop-result-in-cdddr ____))))
+   (should (equal ___ loop-result-in))
+   (should (equal ___ loop-result-in-cdr))
+   (should (equal ___ loop-result-in-cddr))
+   (should (equal ___ loop-result-in-cdddr))))
 
 
 (elisp-koans/deftest
@@ -95,7 +95,7 @@
  (let* ((my-vector (vector 0 1 2 3 4))
         (loop-result
          (cl-loop for val across my-vector collect val)))
-   (should (equal ____ loop-result))))
+   (should (equal ___ loop-result))))
 
 
 (defvar books-to-heros)
