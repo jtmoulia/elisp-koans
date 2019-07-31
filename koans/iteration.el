@@ -33,13 +33,14 @@ variable in turn"
      (if (> one-prime biggest-in-list)
          (setf biggest-in-list one-prime))
      (incf how-many-in-list))
-   (should (equal ___ how-many-in-list))
-   (should (equal ___ biggest-in-list)))
- (let ((sum 0))
-   "write your own dolist here to calculate the sum of some-primes"
-   "you may be interested in investigating the 'incf' function"
-   ;; (dolist ... )
-   (should (eq 999607602 sum))))
+   (should (equal 4 how-many-in-list))
+   (should (equal 999565999 biggest-in-list))
+   (let ((sum 0))
+     "write your own dolist here to calculate the sum of some-primes"
+     "you may be interested in investigating the 'incf' function"
+     (dolist (one-prime some-primes)
+       (setf sum (+ sum one-prime)))
+     (should (eq 999607602 sum)))))
 
 
 (elisp-koans/deftest
@@ -59,7 +60,7 @@ upon completion of the iteration."
 binding them in order to your selected symbol."
  (let ((out-list nil))
    (dotimes (y 3) (push y out-list))
-   (should (equal ___ out-list))))
+   (should (equal '(2 1 0) out-list))))
 
 
 (elisp-koans/deftest
@@ -68,8 +69,8 @@ binding them in order to your selected symbol."
 a global value."
  (let ((outer-var "outer"))
    (dotimes (outer-var 4)
-     (should (eq ___ (equal "outer" outer-var))))
-   (should (eq ___ (equal "outer" outer-var)))))
+     (should (eq nil (equal "outer" outer-var))))
+   (should (eq t (equal "outer" outer-var)))))
 
 
 (elisp-koans/deftest
@@ -81,7 +82,7 @@ will be covered in a future koan."
    (loop
     (incf loop-counter)
     (if (>= loop-counter 100) (return loop-counter)))
-   (should (equal ___ loop-counter))))
+   (should (equal 100 loop-counter))))
 
 
 (elisp-koans/deftest
@@ -89,7 +90,7 @@ will be covered in a future koan."
  "`mapcar' takes a list and a function.  It returns a new list
 with the function applied to each element of the input"
   (let ((mc-result (mapcar #'evenp '(1 2 3 4 5))))
-    (should (equal ___ mc-result))))
+    (should (equal '(nil t nil t nil) mc-result))))
 
 ;; ----
 
@@ -113,7 +114,7 @@ with the function applied to each element of the input"
  (should (equal (vowels-to-xs "Astronomy") "xstrxnxmy"))
  (let* ((subjects '("Astronomy" "Biology" "Chemistry" "Linguistics"))
         (mc-result (mapcar #'vowels-to-xs subjects)))
-   (should (equal ___ mc-result))))
+   (should (equal '("xstrxnxmy" "Bxxlxgy" "Chxmxstry" "Lxngxxstxcs") mc-result))))
 
 ;; ----
 
@@ -122,6 +123,6 @@ with the function applied to each element of the input"
  elisp-koans/iteration-mapcar-with-lambda ()
  "`mapcar' can apply a `lambda' to a collection"
  (let ((mc-result (mapcar (lambda (x) (mod x 10)) '(21 152 403 14))))
-   (should (equal ___ mc-result))))
+   (should (equal '(1 2 3 4) mc-result))))
 
 ;; iteration.el ends here

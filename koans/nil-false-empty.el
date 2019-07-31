@@ -23,48 +23,48 @@
 (elisp-koans/deftest
  elisp-koans/nil-false-empty-t-and-nil-are-opposites ()
  "`not' is a function which returns the boolean opposite of its argument"
- (should (eq ___ (not nil)))
- (should (eq ___ (not t))))
+ (should (eq t (not nil)))
+ (should (eq nil (not t))))
 
 
 (elisp-koans/deftest
  elisp-koans/nil-false-empty-nil-and-empty-list-are-the-same-thing ()
  "`nil' is the same thing as the empty list"
-  (should (eq ___ (and '())))
-  (should (eq ___ (not '()))))
+  (should (eq nil (and '())))
+  (should (eq t (not '()))))
 
 
 (elisp-koans/deftest
  elisp-koans/nil-false-empty-lots-of-things-are-true ()
  "every value, other than nil, is boolean true"
- (should (eq ___ (elisp-koans/to-boolean 5)))
- (should (eq ___ (elisp-koans/to-boolean "A String")))
+ (should (eq t (elisp-koans/to-boolean 5)))
+ (should (eq t (elisp-koans/to-boolean "A String")))
  "only nil is nil.  Everything else is effectively true."
  "the empty string"
- (should (eq ___ (elisp-koans/to-boolean "")))
+ (should (eq t (elisp-koans/to-boolean "")))
  "a list containing a nil"
- (should (eq ___ (elisp-koans/to-boolean '(nil))))
+ (should (eq t (elisp-koans/to-boolean '(nil))))
  "an vector with no elements"
- (should (eq ___ (elisp-koans/to-boolean (vector))))
+ (should (eq t (elisp-koans/to-boolean (vector))))
  "the number zero"
- (should (eq ___ (elisp-koans/to-boolean 0))))
+ (should (eq t (elisp-koans/to-boolean 0))))
 
 
 (elisp-koans/deftest
  elisp-koans/nil-false-empty-test-and ()
  "`and' can take multiple arguments"
-   (should (eq ___ (and t t t t t)))
-   (should (eq ___ (and t t nil t t)))
-   "if no nils, and returns the last value"
-   (should (eq ___ (and t t t t t 5))))
+   (should (eq t (and t t t t t)))
+   (should (eq nil (and t t nil t t)))
+   "if no nils, `and' returns the last value"
+   (should (eq 5 (and t t t t t 5))))
 
 
 (elisp-koans/deftest
  elisp-koans/nil-false-empty-test-or ()
  "`or' can also take multiple arguments"
- (should (eq ___  (or nil nil nil t nil)))
+ (should (eq t (or nil nil nil t nil)))
  "`or' returns the first non nil value, or nil if there are none."
- (should (eq ___ (or nil nil nil)))
- (should (eq ___ (or 1 2 3 4 5))))
+ (should (eq nil (or nil nil nil)))
+ (should (eq 1 (or 1 2 3 4 5))))
 
 ;;; nil-false-empty.el ends here

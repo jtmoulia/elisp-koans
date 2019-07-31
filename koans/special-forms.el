@@ -33,12 +33,12 @@
  "`setf' is used to assign values to symbols. These symbols may refer to
 variables with lexical or dynamic scope."
   (setf elisp-koans-my-name "David")
-  (should (equal ___ elisp-koans-my-name))
+  (should (equal elisp-koans-my-name "David"))
   (setf elisp-koans-my-clones-name elisp-koans-my-name)
-  (should (equal ___ "David"))
+  (should (equal "David" elisp-koans-my-clones-name))
   (setf elisp-koans-a 5)
   (setf elisp-koans-b 10)
-  (setf elisp-koans-c ___)
+  (setf elisp-koans-c 50)
   (should (equal 50 elisp-koans-c)))
 
 ;; Relevant emacs info page: `(info "(elisp)Local Variables")'
@@ -51,21 +51,21 @@ over the extent of the lexical form. After which, the previous
 value, if it exists, is visible again."
   (setf elisp-koans-a 10)
   (setf elisp-koans-b 20)
-  (should (equal elisp-koans-a ___))
-  (should (equal elisp-koans-b ___))
+  (should (equal elisp-koans-a 10))
+  (should (equal elisp-koans-b 20))
   (let ((elisp-koans-a 1111)
         (elisp-koans-b 2222))
-    (should (equal elisp-koans-a ___))
-    (should (equal elisp-koans-b ___)))
-  (should (equal elisp-koans-a ___))
-  (should (equal elisp-koans-b ___)))
+    (should (equal elisp-koans-a 1111))
+    (should (equal elisp-koans-b 2222)))
+  (should (equal elisp-koans-a 10))
+  (should (equal elisp-koans-b 20)))
 
 
 (elisp-koans/deftest
  elisp-koans/special-forms-let-default-value ()
  "`let' vars are bound to a default value."
  (let ((x))
-   (should (equal ___ x))))
+   (should (equal nil x))))
 
 
 (elisp-koans/deftest
@@ -75,7 +75,7 @@ on earlier ones."
  (setf elisp-koans-a 100)
  (let ((elisp-koans-a 5)
        (elisp-koans-b (* 10 elisp-koans-a)))
-   (should (equal elisp-koans-b ___))))
+   (should (equal elisp-koans-b 1000))))
 
 
 (elisp-koans/deftest
@@ -84,8 +84,8 @@ on earlier ones."
  (setf a 100)
  (let* ((a 5)
         (b (* 10 a)))
-   (should (equal b ___)))
- (should (equal a ___)))
+   (should (equal b 50)))
+ (should (equal a 100)))
 
 
 (elisp-koans/deftest
@@ -94,18 +94,19 @@ on earlier ones."
  (setf elisp-koans-a 100)
  (setf elisp-koans-b 23)
  (setf elisp-koans-c 456)
- (let ((elisp-koans-a ___)
-       (elisp-koans-b ___)
-       (elisp-koans-c ___))
+ (let ((elisp-koans-a 100)
+       (elisp-koans-b 200)
+       (elisp-koans-c "Jellyfish"))
    (should (eq elisp-koans-a 100))
    (should (eq elisp-koans-b 200))
    (should (equal elisp-koans-c "Jellyfish")))
- (let* ((elisp-koans-a ___)
+ (let* ((elisp-koans-a 121)
         ;; add more bindings here
-        )
+        (elisp-koans-b 200)
+        (elisp-koans-c 321))
    (should (eq elisp-koans-a 121))
    (should (eq elisp-koans-b 200))
-   (should (equal elisp-koans-c (+ elisp-koans-a (/ elisp-koans-b elisp-koans-a))))))
+   (should (equal elisp-koans-c (+ elisp-koans-b elisp-koans-a)))))
 
 ;; Relevant emacs info page: `(info "(cl)Conditionals")'
 ;; Note that `case' is an alias of `cl-case'
@@ -122,20 +123,22 @@ match is found"
          (5 :five)
          ;; t specifies default behavior
          (t :unknown)))
- (should (equal ___ elisp-koans-b))
+ (should (equal :four elisp-koans-b))
  "case can also check if a list of values contains
    the input"
  (setf elisp-koans-c
        (case elisp-koans-a
          (5 :five)
          ((3 4) :three-or-four)))
- (should (equal ___ elisp-koans-c)))
+ (should (equal :three-or-four elisp-koans-c)))
 
 
 (defun elisp-koans/cartoon-dads (input)
   "you should be able to complete this case statement"
   (case input
-    (:this-one-doesnt-happen :fancy-cat)
+    (:bart :homer)
+    (:stewie :peter)
+    (:stan :randy)
     (t :unknown)))
 
 (elisp-koans/deftest
@@ -156,16 +159,16 @@ the implications of this in the equality-distinctions lesson"
                     ("John" "Doe")
                     ("Max" "Mustermann")
                     (t "Anonymous"))))
-   (should (equal ___ lastname))))
+   (should (equal "Anonymous"lastname))))
+
 
 (elisp-koans/deftest
  elisp-koans/special-forms-cond ()
- "cond is the general purpose form for checking multiple
-conditions, until a condition is met"
+ "cond is the general purpose form for checking multiple conditions, until a condition is met"
  (let* ((a 4)
         (c (cond ((> elisp-koans-a 0) :positive)
                  ((< elisp-koans-a 0) :negative)
                  (t :zero))))
-   (should (equal ___ c))))
+   (should (equal :positive c))))
 
 ;;; special-forms.el ends here

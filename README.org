@@ -1,3 +1,6 @@
+*WARNING:* You're on the =cheatsheet= branch! All of the answers are already
+filled out.
+
 * elisp-koans
 
 ** What is elisp-koans?

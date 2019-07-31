@@ -19,48 +19,48 @@
 (elisp-koans/deftest
  elisp-koans/vectors-types ()
  "`[x y z]' defines a vector literal containing x y z"
- (should (eq ___ (typep [1 11 111] 'vector)))
- (should (eq ___ (aref [1 11 111] 1))))
+ (should (eq t (typep [1 11 111] 'vector)))
+ (should (eq 11 (aref [1 11 111] 1))))
 
 
 (elisp-koans/deftest
  elisp-koans/vectors-length ()
  "`length' works on vectors"
- (should (eq ___ (length [1 2 3]))))
+ (should (eq 3 (length [1 2 3]))))
 
 
 (elisp-koans/deftest
  elisp-koans/vectors-bool ()
  "define a `bool-vector' literal with four elements, 0, 0, 1 and 1,
 and expand it using `vconcat'"
- (should (equal ___ (vconcat (bool-vector nil t t))))
- (should (eq ___ (typep #&4"	" 'bool-vector)))
- (should (eq ___ (aref #&4"	" 1))))
+ (should (equal [nil t t] (vconcat (bool-vector nil t t))))
+ (should (eq t (typep #&4"	" 'bool-vector)))
+ (should (eq nil (aref #&4"	" 1))))
 
 
 (elisp-koans/deftest
  elisp-koans/vectors-bool-operations ()
  "bool vectors can be compared using operations"
- (should (equal ___
+ (should (equal [t nil nil nil]
                 (vconcat (bool-vector-intersection (bool-vector t t nil nil)
                                                    (bool-vector t nil t nil)))))
- (should (equal ___
+ (should (equal [t t t nil]
                 (vconcat (bool-vector-union (bool-vector t t nil nil)
                                             (bool-vector t nil t nil)))))
- (should (equal ___
+ (should (equal [nil t t nil]
                 (vconcat (bool-vector-exclusive-or (bool-vector t t nil nil)
                                                    (bool-vector t nil t nil))))))
 
 
 (defun list-to-bool-vector (my-list)
   "Return a `bool-vector' created from the elements of MY-LIST."
-  nil)
+  (apply 'bool-vector my-list))
 
 (elisp-koans/deftest
  elisp-koans/vectors-list-to-bool-vector ()
  "you must complete `list-to-bool-vector'"
  (should (bool-vector-p (list-to-bool-vector '(nil nil t t nil))))
- (should-not (aref (list-to-bool-vector '(nil))))
+ (should-not (aref (list-to-bool-vector '(nil)) 0))
  (should (aref (list-to-bool-vector '(nil t)) 1))
  (should (equal 8 (length (list-to-bool-vector '(nil nil t t nil nil t t))))))
 

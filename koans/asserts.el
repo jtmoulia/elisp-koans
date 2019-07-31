@@ -17,31 +17,31 @@
 (elisp-koans/deftest
  elisp-koans/asserts-true ()
  "`t' is true. Replace the blank with `t' to assert it is true"
- (should ___))
+ (should t))
 
 
 (elisp-koans/deftest
  elisp-koans/asserts-false ()
  "`nil' is false. Replace the blank with `nil' to assert it is not true"
- (should-not ___))
+ (should-not nil))
 
 
 (elisp-koans/deftest
  elisp-koans/asserts-fill-in-the-blank ()
  "sometimes you will need to fill in the blank of an expression"
- (should (eq ___ 2)))
+ (should (eq 2 2)))
 
 
 (elisp-koans/deftest
  elisp-koans/asserts-eq-true-or-false ()
  "a test might contain multiple statements"
- (should (eq ___ (equal 34 34)))
- (should (eq ___ (equal 19 78))))
+ (should (eq t (equal 34 34)))
+ (should (eq nil (equal 19 78))))
 
 
 (elisp-koans/deftest
  elisp-koans/asserts-should-error ()
  "try filling out the type of error, in this case an `\'arith-error'"
- (should-error (/ 1 0) :type ___))
+ (should-error (/ 1 0) :type 'arith-error))
 
 ;;; asserts.el ends here

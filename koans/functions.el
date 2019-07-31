@@ -25,7 +25,7 @@
 (elisp-koans/deftest
  elisp-koans/functions-call ()
  "`defun' defines global functions"
- (should (eq ___ (elisp-koans/add 7 11))))
+ (should (eq 18 (elisp-koans/add 7 11))))
 
 
 (elisp-koans/deftest
@@ -36,8 +36,8 @@ with `cl-labels' may refer to themselves, whereas local functions
 defined with `cl-flet' may not."
  (cl-flet ((elisp-koans/add (a b) (* a b)))
    "`cl-flet' binds a function to a name within a lexical environment"
-   (should (equal ___ (elisp-koans/add 7 11))))
- (should (equal ___ (elisp-koans/add 7 11))))
+   (should (equal 77 (elisp-koans/add 7 11))))
+ (should (equal 18 (elisp-koans/add 7 11))))
 
 
 ;; borrowed from Common Lisp The Language chapter 5.2.2
@@ -48,9 +48,9 @@ defined with `cl-flet' may not."
 (elisp-koans/deftest
  elisp-koans/functions-optional-parameters ()
  "Optional parameters are filled in with their default value."
- (should (equal ___ (elisp-koans/func-with-opt-params :test-1 :test-2)))
- (should (equal ___ (elisp-koans/func-with-opt-params :test-1)))
- (should (equal ___ (elisp-koans/func-with-opt-params))))
+ (should (equal '(:test-1 :test-2) (elisp-koans/func-with-opt-params :test-1 :test-2)))
+ (should (equal '(:test-1 3) (elisp-koans/func-with-opt-params :test-1)))
+ (should (equal '(2 3) (elisp-koans/func-with-opt-params))))
 
 
 (cl-defun elisp-koans/func-with-opt-params-and-indication (&optional (a 2 a?) (b 3 b?))
@@ -61,9 +61,9 @@ defined with `cl-flet' may not."
  "Common Lisp optional params may bind a symbol which indicate
 whether the value was provided or defaulted. Each optional
 parameter binding has the form (var default-form supplied-p)."
-   (should (equal ___ (elisp-koans/func-with-opt-params-and-indication :test-1 :test-2)))
-   (should (equal ___ (elisp-koans/func-with-opt-params-and-indication :test-1)))
-   (should (equal ___ (elisp-koans/func-with-opt-params-and-indication))))
+   (should (equal '(:test-1 t :test-2 t) (elisp-koans/func-with-opt-params-and-indication :test-1 :test-2)))
+   (should (equal '(:test-1 t 3 nil) (elisp-koans/func-with-opt-params-and-indication :test-1)))
+   (should (equal '(2 nil 3 nil) (elisp-koans/func-with-opt-params-and-indication))))
 
 
 (defun elisp-koans/func-with-rest-params (&rest x)
@@ -73,9 +73,9 @@ parameter binding has the form (var default-form supplied-p)."
  elisp-koans/functions-with-rest-params ()
  "With &rest, the remaining params, are handed in as a list.  Remaining
 arguments (possibly none) are collected into a list."
- (should (equal ___ (elisp-koans/func-with-rest-params)))
- (should (equal ___ (elisp-koans/func-with-rest-params 1)))
- (should (equal ___ (elisp-koans/func-with-rest-params 1 :two 333))))
+ (should (equal '() (elisp-koans/func-with-rest-params)))
+ (should (equal '(1) (elisp-koans/func-with-rest-params 1)))
+ (should (equal '(1 :two 333) (elisp-koans/func-with-rest-params 1 :two 333))))
 
 
 (cl-defun elisp-koans/cl-defun-with-key-params (&key a b)
@@ -85,12 +85,12 @@ arguments (possibly none) are collected into a list."
 (elisp-koans/deftest
  elisp-koans/functions-key-params ()
  "Key params allow the user to specify params in any order."
- (should (equal ___ (elisp-koans/cl-defun-with-key-params)))
- (should (equal ___ (elisp-koans/cl-defun-with-key-params :a 11 :b 22)))
+ (should (equal '(nil nil) (elisp-koans/cl-defun-with-key-params)))
+ (should (equal '(11 22) (elisp-koans/cl-defun-with-key-params :a 11 :b 22)))
  ;; it is not necessary to specify all key parameters
- (should (equal ___ (elisp-koans/cl-defun-with-key-params :b 22)))
+ (should (equal '(nil 22) (elisp-koans/cl-defun-with-key-params :b 22)))
  ;; order is not important
- (should (equal ___ (elisp-koans/cl-defun-with-key-params :b 22 :a 0))))
+ (should (equal '(0 22) (elisp-koans/cl-defun-with-key-params :b 22 :a 0))))
 
 
 (cl-defun elisp-koans/cl-defun-key-params-can-have-defaults (&key (a 3) (b 4))
@@ -100,12 +100,12 @@ arguments (possibly none) are collected into a list."
 (elisp-koans/deftest
  elisp-koans/functions-key-params-can-have-defaults ()
  "key parameters can have defaults also"
- (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults)))
- (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :a 3 :b 4)))
- (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :a 11 :b 22)))
- (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :b 22)))
+ (should (equal '(3 4) (elisp-koans/cl-defun-key-params-can-have-defaults)))
+ (should (equal '(3 4) (elisp-koans/cl-defun-key-params-can-have-defaults :a 3 :b 4)))
+ (should (equal '(11 22) (elisp-koans/cl-defun-key-params-can-have-defaults :a 11 :b 22)))
+ (should (equal '(3 22) (elisp-koans/cl-defun-key-params-can-have-defaults :b 22)))
  ;; order is not important
- (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :b 22 :a 0))))
+ (should (equal '(0 22) (elisp-koans/cl-defun-key-params-can-have-defaults :b 22 :a 0))))
 
 
 ;; borrowed from common lisp the language 5.2.2
@@ -115,10 +115,10 @@ arguments (possibly none) are collected into a list."
 (elisp-koans/deftest
  elisp-koans/functions-many-kinds-params ()
  "CL (and elisp!) provides the programmer with more than enough rope to hang themself."
- (should (equal ___ (elisp-koans/cl-defun-with-funky-parameters 1)))
- (should (equal ___ (elisp-koans/cl-defun-with-funky-parameters 1 :b 2)))
- (should (equal ___ (elisp-koans/cl-defun-with-funky-parameters 1 :b 2 :c 3)))
- (should (equal ___ (elisp-koans/cl-defun-with-funky-parameters 1 :c 3 :b 2))))
+ (should (equal '(1 nil 1 nil) (elisp-koans/cl-defun-with-funky-parameters 1)))
+ (should (equal '(1 2 1 (:b 2)) (elisp-koans/cl-defun-with-funky-parameters 1 :b 2)))
+ (should (equal '(1 2 3 (:b 2 :c 3)) (elisp-koans/cl-defun-with-funky-parameters 1 :b 2 :c 3)))
+ (should (equal '(1 2 3 (:c 3 :b 2)) (elisp-koans/cl-defun-with-funky-parameters 1 :c 3 :b 2))))
 
 
 ;; Note that &rest parameters have to come before &key parameters.
@@ -130,15 +130,15 @@ arguments (possibly none) are collected into a list."
  elisp-koans/functions-lambdas-are-nameless-functions ()
  "A `lambda' form defines a function, but with no name.  It is possible
 to execute that function immediately, or put it somewhere for later use."
- (should (eq ___ ((lambda (a b) (+ a b)) 10 9)))
+ (should (eq 19 ((lambda (a b) (+ a b)) 10 9)))
  (let ((my-function))
    (setf my-function (lambda (a b) (* a b)))
-   (should (eq ___ (funcall my-function 11 9))))
+   (should (eq 99 (funcall my-function 11 9))))
  (let ((list-of-functions nil))
    (push (lambda (a b) (+ a b)) list-of-functions)
    (push (lambda (a b) (* a b)) list-of-functions)
    (push (lambda (a b) (- a b)) list-of-functions)
-   (should (equal ___ (funcall (second list-of-functions) 2 33)))))
+   (should (equal 66 (funcall (second list-of-functions) 2 33)))))
 
 
 (elisp-koans/deftest
@@ -150,13 +150,13 @@ parameters"
    (setq f2 '-)
    (setq f3 'max)
 
-   (should (equal ___ (apply f1 '(1 2))))
-   (should (equal ___ (apply f2 '(1 2))))
+   (should (equal 3 (apply f1 '(1 2))))
+   (should (equal -1 (apply f2 '(1 2))))
 
    ;; after the function name, the parameters are consed onto the front
    ;; of the very last parameter
-   (should (equal ___ (apply f1 1 2 '(3))))
-   (should (equal ___ (apply f3 1 2 3 4 '())))))
+   (should (equal 6 (apply f1 1 2 '(3))))
+   (should (equal 4 (apply f3 1 2 3 4 '())))))
 
 
 (elisp-koans/deftest
@@ -168,9 +168,9 @@ list."
    (setq f1 '+)
    (setq f2 '-)
    (setq f3 'max)
-   (should (equal ___ (funcall f1 1 2)))
-   (should (equal ___ (funcall f2 1 2)))
-   (should (equal ___ (funcall f1 1 2 3)))
-   (should (equal ___ (funcall f3 1 2 3 4)))))
+   (should (equal 3 (funcall f1 1 2)))
+   (should (equal -1 (funcall f2 1 2)))
+   (should (equal 6 (funcall f1 1 2 3)))
+   (should (equal 4 (funcall f3 1 2 3 4)))))
 
 ;;; functions.el ends here

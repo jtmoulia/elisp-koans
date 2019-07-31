@@ -22,11 +22,11 @@ conditional"
    (if t
        (setf result "true value")
      (setf result "false value"))
-   (should (equal ___ result))
+   (should (equal "true value" result))
    (if nil
        (setf result "true value")
      (setf result "false value"))
-   (should (equal ___ result))))
+   (should (equal "false value" result))))
 
 
 (elisp-koans/deftest
@@ -43,10 +43,10 @@ conditional"
      (unless (> x 5)
        (setf result-2 x)
        (push x unless-nums)))
-   (should (equal ___ result-1))
-   (should (equal ___ result-2))
-   (should (equal ___ when-nums))
-   (should (equal ___ unless-nums))))
+   (should (equal 10 result-1))
+   (should (equal 5 result-2 ))
+   (should (equal '(10 9 8 7 6) when-nums))
+   (should (equal '(5 4 3 2 1) unless-nums))))
 
 
 (elisp-koans/deftest
@@ -54,7 +54,7 @@ conditional"
  "`and' only evaluates forms until one evaluates to `nil'"
  (should
   (equal
-   ___
+   2
    (let ((x 0))
      (and
       (setf x (+ 1 x))
@@ -69,7 +69,7 @@ conditional"
  "`or' only evaluates until one argument evaluates to non-nil"
  (should
   (equal
-   ___
+   1
    (let ((x 0))
      (or
       (setf x (+ 1 x))

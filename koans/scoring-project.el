@@ -49,9 +49,20 @@
 ;;
 ;; Your goal is to write the score method.
 
+
+(defun elisp-koans/count-in (lst target)
+  (length (seq-filter (lambda (elt) (equalp elt target)) lst)))
+
 (defun elisp-koans/score (dice)
   "Score the DICE rolls."
-  :write-me)
+  (let* ((ones-count (elisp-koans/count-in dice 1))
+         (ones-score (+ (if (>= ones-count 3) 1000 0) (* (mod ones-count 3) 100)))
+         (fives-score (* (mod (elisp-koans/count-in dice 5) 3) 50))
+         (triples-score
+          (apply '+ (mapcar
+                     (lambda (x) (if (>= (elisp-koans/count-in dice x) 3) (* x 100) 0))
+                     (number-sequence 2 6)))))
+    (+ ones-score fives-score triples-score)))
 
 
 (elisp-koans/deftest

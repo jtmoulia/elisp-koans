@@ -24,29 +24,29 @@
  "(eq x y) is true if and only if x and y are the same identical object
 eq is like comparing pointers in c.  If the values are EQ, any non-nil
 value may be returned."
- (should (eq ___ (eq 'a 'a)))
- (should (eq ___ (eq 3 3)))
- (should (eq ___ (eq 3 3.0)))
- (should (eq ___ (eq '(1 2) '(1 2))))
- (should (eq ___ (eq "Foo" "Foo")))
- (should (eq ___ (eq "Foo" (copy-seq "Foo"))))
- (should (eq ___ (eq "FOO" "Foo"))))
+ (should (eq t (eq 'a 'a)))
+ (should (eq t (eq 3 3)))
+ (should (eq nil (eq 3 3.0)))
+ (should (eq nil (eq '(1 2) '(1 2))))
+ (should (eq nil (eq "Foo" "Foo")))
+ (should (eq nil (eq "Foo" (copy-seq "Foo"))))
+ (should (eq nil (eq "FOO" "Foo"))))
 
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-eql ()
- "(eql x y) is true if (eq x y) also it is true if x and y are
+ "(eql x y) is true if (eq x y) or if x and y are
 numeric of the same type and represent the same number.
 (eql x y) also if x and y are the same characters."
- (should (eq ___ (eql 'a 'a)))
- (should (eq ___ (eql 3 3)))
- (should (eq ___ (eql 3 3.0)))
- (should (eq ___ (eql '(1 2) '(1 2))))
- (should (eq ___ (eql '(a b) '(a b))))
- (should (eq ___ (eql ?S ?S)))
- (should (eq ___ (eql "Foo" "Foo")))
- (should (eq ___ (eql "Foo" (copy-seq "Foo"))))
- (should (eq ___ (eql "FOO" "Foo"))))
+ (should (eq t (eql 'a 'a)))
+ (should (eq t (eql 3 3)))
+ (should (eq nil (eql 3 3.0)))
+ (should (eq nil (eql '(1 2) '(1 2))))
+ (should (eq nil (eql '(a b) '(a b))))
+ (should (eq t (eql ?S ?S)))
+ (should (eq nil (eql "Foo" "Foo")))
+ (should (eq nil (eql "Foo" (copy-seq "Foo"))))
+ (should (eq nil (eql "FOO" "Foo"))))
 
 
 (elisp-koans/deftest
@@ -54,16 +54,16 @@ numeric of the same type and represent the same number.
   "(equal x y) is true if (eql x y), or
 x and y are lists with equal elements, or
 x and y character or bit arrays with equal elements"
-  (should (eq ___ (equal 'a 'a)))
-  (should (eq ___ (equal 3 3)))
-  (should (eq ___ (equal 3 3.0)))
-  (should (eq ___ (equal '(1 2) '(1 2))))
-  (should (eq ___ (equal '(a b) '(a b))))
-  (should (eq ___ (equal '(a b) '(a doesnt-match))))
-  (should (eq ___ (equal ?S ?S)))
-  (should (eq ___ (equal "Foo" "Foo")))
-  (should (eq ___ (equal "Foo" (copy-seq "Foo"))))
-  (should (eq ___ (equal "FOO" "Foo"))))
+  (should (eq t (equal 'a 'a)))
+  (should (eq t (equal 3 3)))
+  (should (eq nil (equal 3 3.0)))
+  (should (eq t (equal '(1 2) '(1 2))))
+  (should (eq t (equal '(a b) '(a b))))
+  (should (eq nil (equal '(a b) '(a doesnt-match))))
+  (should (eq t (equal ?S ?S)))
+  (should (eq t (equal "Foo" "Foo")))
+  (should (eq t (equal "Foo" (copy-seq "Foo"))))
+  (should (eq nil (equal "FOO" "Foo"))))
 
 
 (elisp-koans/deftest
@@ -73,25 +73,25 @@ if x and y are strings with the same characters (case independent).
 if x and y are arrays with the same dimensions and equal elements
 if x and y are numeric of different types but one may be upgraded to
 the other type without loss and still exhibit equality."
- (should (eq ___ (equalp 'a 'a)))
- (should (eq ___ (equalp 3 3)))
- (should (eq ___ (equalp 3 3.0)))
- (should (eq ___ (equalp '(1 2) '(1 2))))
- (should (eq ___ (equalp  '(a b) '(a b))))
- (should (eq ___ (equalp  '(a b) '(a doesnt-match))))
- (should (eq ___ (equalp ?S ?S)))
- (should (eq ___ (equalp "Foo" "Foo")))
- (should (eq ___ (equalp "Foo" (copy-seq "Foo"))))
- (should (eq ___ (equalp "FOO" "Foo"))))
+ (should (eq t (equalp 'a 'a)))
+ (should (eq t (equalp 3 3)))
+ (should (eq t (equalp 3 3.0)))
+ (should (eq t (equalp '(1 2) '(1 2))))
+ (should (eq t (equalp  '(a b) '(a b))))
+ (should (eq nil (equalp  '(a b) '(a doesnt-match))))
+ (should (eq t (equalp ?S ?S)))
+ (should (eq t (equalp "Foo" "Foo")))
+ (should (eq t (equalp "Foo" (copy-seq "Foo"))))
+ (should (eq t (equalp "FOO" "Foo"))))
 
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-numeric-equal ()
  "(= x y) is only for numerics and can take multiple arguments
 if x or y is not numeric there will be a compiler error."
- (should (eq ___ (= 99.0 99 99.000)))
- (should (eq ___ (= 0 1 -1)))
- (should (eq ___ (= (/ 2 3) (/ 6 9) (/ 86 129)))))
+ (should (eq t (= 99.0 99 99.000)))
+ (should (eq nil (= 0 1 -1)))
+ (should (eq t (= (/ 2 3) (/ 6 9) (/ 86 129)))))
 
 
 ;; EQ, EQL, EQUAL, and EQUALP are general equality predicates.
@@ -100,9 +100,8 @@ if x or y is not numeric there will be a compiler error."
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-string-equal ()
- "string-equal is just like string= except that differences in case are ignored."
- (should (eq ___ (string= "Foo" "Foo")))
- (should (eq ___ (string= "Foo" "FOO")))
- (should (eq ___ (string-equal "Foo" "FOO"))))
+ (should (eq t (string= "Foo" "Foo")))
+ (should (eq nil (string= "Foo" "FOO")))
+ (should (eq nil (string-equal "Foo" "FOO"))))
 
 ;;; equality-distinctions.el ends here

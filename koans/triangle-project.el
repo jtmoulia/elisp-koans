@@ -22,7 +22,12 @@
   "Return the type of triangle given side lengths A, B, and C. Possible triangle
 types are `:equilateral', `:isosceles' and `:scalene'. Throw `triangle-error' if
 the provided side lengths are invalid."
-  (signal 'triangle-error nil))
+  (cond
+   ((or (<= a 0) (<= b 0) (<= c 0)) (signal 'triangle-error nil))
+   ((or (<= (+ a b) c) (<= (+ a c) b) (<= (+ b c) a)) (signal 'triangle-error nil))
+   ((= a b c) :equilateral)
+   ((or (= a b) (= a c) (= b c)) :isosceles)
+   (:scalene)))
 
 
 (elisp-koans/deftest

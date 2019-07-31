@@ -27,7 +27,7 @@ This is distinct from returning a list or structure of values."
    "`floor*' returns multiple values"
    (setf x (multiple-value-list (floor* 1.5)))
    (should (equal x '(1 0.5))))
- (should (equal ___ (multiple-value-list (floor* (/ 99.0 4))))))
+ (should (equal '(24 0.75) (multiple-value-list (floor* (/ 99.0 4))))))
 
 
 (defun next-fib (a b)
@@ -41,15 +41,15 @@ the third form using those bindings"
  (let ((x)
        (y))
    (setf x (next-fib 2 3))
-   (should (equal ___ x))
+   (should (equal '(3 5) x))
    (setf x (multiple-value-list (next-fib 2 3)))
-   (should (equal ___ x))
+   (should (equal '(3 5) x))
    (setf y (multiple-value-bind (b c) (next-fib 3 5) (* b c)))
-   (should (equal ___ y))
+   (should (equal 40 y))
    "multiple-value-setq is like setf, but can set multiple variables"
    (multiple-value-setq (x y) (values :v1 :v2))
    (should (equal '(:v1 :v2) (list x y)))
    (multiple-value-setq (x y) (next-fib 5 8))
-   (should (equal ___ (list x y)))))
+   (should (equal '(8 13) (list x y)))))
 
 ;;; multiple-values.el ends here

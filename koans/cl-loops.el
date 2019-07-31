@@ -25,7 +25,7 @@
         (loop-result
          (cl-loop for letter in letters
                   collect letter)))
-   (should (equal ___ loop-result))))
+   (should (equal '(:a :b :c :d) loop-result))))
 
 
 (elisp-koans/deftest
@@ -36,7 +36,7 @@
          (cl-loop for letter in letters
                   for i from 1 to 1000
                   collect (list i letter))))
-   (should (equal ___ loop-result))))
+   (should (equal '((1 :a) (2 :b) (3 :c) (4 :d)) loop-result))))
 
 
 (elisp-koans/deftest
@@ -47,7 +47,7 @@
          (cl-loop for letter in letters
                   for i from 0 to 1000 by 5
                   collect (list i letter))))
-   (should (equal ___ loop-result))))
+   (should (equal '((0 :a) (5 :b) (10 :c) (15 :d)) loop-result))))
 
 
 (elisp-koans/deftest
@@ -55,8 +55,8 @@
  "The `by' clause can specify a negative step interval `downto' a target."
  (let ((loop-result
         (cl-loop for i from 10 downto -10 by 5
-                 collect i )))
-   (should (equal ___ loop-result))))
+                 collect i)))
+   (should (equal '(10 5 0 -5 -10) loop-result))))
 
 
 (elisp-koans/deftest
@@ -67,8 +67,8 @@
          (cl-loop for letter in letters collect letter))
         (loop-result-on
          (cl-loop for letter on letters collect letter)))
-   (should (equal ___ loop-result-in))
-   (should (equal ___ loop-result-on))))
+   (should (equal '(:a :b :c) loop-result-in))
+   (should (equal '((:a :b :c) (:b :c) (:c)) loop-result-on))))
 
 
 (elisp-koans/deftest
@@ -83,10 +83,10 @@
          (cl-loop for letter in letters by #'cddr collect letter))
         (loop-result-in-cdddr
          (cl-loop for letter in letters by #'cdddr collect letter)))
-   (should (equal ___ loop-result-in))
-   (should (equal ___ loop-result-in-cdr))
-   (should (equal ___ loop-result-in-cddr))
-   (should (equal ___ loop-result-in-cdddr))))
+   (should (equal '(:a :b :c :d :e :f) loop-result-in))
+   (should (equal '(:a :b :c :d :e :f) loop-result-in-cdr))
+   (should (equal '(:a :c :e) loop-result-in-cddr))
+   (should (equal '(:a :d) loop-result-in-cdddr))))
 
 
 (elisp-koans/deftest
@@ -95,7 +95,7 @@
  (let* ((my-vector (vector 0 1 2 3 4))
         (loop-result
          (cl-loop for val across my-vector collect val)))
-   (should (equal ___ loop-result))))
+   (should (equal '(0 1 2 3 4) loop-result))))
 
 
 (elisp-koans/deftest
@@ -109,14 +109,15 @@
     (setf (gethash "The Great Gatsby" books-to-heroes) "James Gatz")
     (let* ((pairs-in-table
             (cl-loop for k being the hash-keys in books-to-heroes
-                    using (hash-value v)
-                    collect (list k v))))
-      (should (eq ___ (length pairs-in-table)))
-      (should (eq ___ (find '("The Hobbit" "Bilbo")) pairs-in-table :test #'equal)))))
+                     using (hash-value v)
+                     collect (list k v))))
+      (should (eq 4 (length pairs-in-table)))
+      (should (equal '("The Hobbit" "Bilbo") (find '("The Hobbit" "Bilbo") pairs-in-table :test #'equal)))
+      )))
 
 
 (elisp-koans/deftest
- elisp-koans/cl-value-accumulation-forms ()
+ elisp-koans/cl-loops-accumulation-forms ()
  "`into' specifies an accumulator function."
  (let ((loop-1
         (cl-loop for x in '(1 2 4 8 16)
@@ -127,11 +128,11 @@
                  minimize x into minimized
                  finally (return (list collected counted summed maximized minimized)))))
    (cl-destructuring-bind (col count sum max min) loop-1
-     (should (equal ___ col))
-     (should (eq ___ count))
-     (should (eq ___ sum))
-     (should (eq ___ max))
-     (should (eq ___ min)))))
+     (should (equal '(1 2 4 8 16) col))
+     (should (eq 5 count))
+     (should (eq 31 sum))
+     (should (eq 16 max))
+     (should (eq 1 min)))))
 
 
 (elisp-koans/deftest
@@ -142,8 +143,8 @@
          (cl-loop for (a b) in '((1 9) (2 8) (3 7) (4 6))
                   do (setf count (+ 1 count))
                   collect (+ a b))))
-   (should (equal ___ count))
-   (should (equal ___ result))))
+   (should (equal 4 count))
+   (should (equal '(10 10 10 10) result))))
 
 
 (elisp-koans/deftest
@@ -152,7 +153,7 @@
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)
                  when (evenp x) sum x)))
-   (should (equal ___ loop-return))))
+   (should (equal 10 loop-return))))
 
 
 (defun greater-than-10-p (x)
@@ -164,7 +165,7 @@
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)
                  when (greater-than-10-p x) sum x)))
-   (should (equal ___ loop-return))))
+   (should (equal 13 loop-return))))
 
 
 (elisp-koans/deftest
@@ -173,6 +174,6 @@
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)
                  when ((lambda (z) (equal 1 (mod z 3))) x) sum x)))
-   (should (equal ___ loop-return))))
+   (should (equal 15 loop-return))))
 
 ;; cl-loops.el ends here
