@@ -25,14 +25,14 @@ the provided side lengths are invalid."
 
 
 (elisp-koans/deftest
- test-equilateral-triangles-have-equal-sides ()
+ elisp-koans/triangles-equilateral ()
  "An equilateral triangle has three sides of equal length."
  (should (eq :equilateral (triangle 2 2 2)))
  (should (eq :equilateral (triangle 10 10 10))))
 
 
 (elisp-koans/deftest
- test-isosceles-triangles-have-two-equal-sides ()
+ elisp-koans/triangles-isosceles ()
  "An isosceles triangle has two sides of equal length."
  (should (eq :isosceles (triangle 3 4 4)))
  (should (eq :isosceles (triangle 4 3 4)))
@@ -41,7 +41,7 @@ the provided side lengths are invalid."
 
 
 (elisp-koans/deftest
- test-scalene-triangles-have-no-equal-sides ()
+ elisp-koans/triangles-scalene ()
  "An scalene triangle has no sides of equal length."
  (should (eq :scalene (triangle 3 4 5)))
  (should (eq :scalene (triangle 10 11 12)))
@@ -49,7 +49,7 @@ the provided side lengths are invalid."
 
 
 (elisp-koans/deftest
- test-illegal-triangles-throw-exceptions ()
+ elisp-koans/triangles-illegal-throw-exceptions ()
  "A triangle can't have any sides of length zero."
  (should-error (triangle 0 0 0) :type 'triangle-error)
  "A triangle can't have any sides of negative length."

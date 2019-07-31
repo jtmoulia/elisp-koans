@@ -85,7 +85,7 @@ element of a list."
 
 
 (elisp-koans/deftest
- test-accessing-list-elements ()
+ elisp-koans/lists-accessing-elements ()
  "`last' returns a singleton list of the final element.
 `elt' is similar to `nth', with the arguments reversed."
  (let ((noms '("peanut" "butter" "and" "jelly")))

@@ -89,7 +89,7 @@ arguments (possibly none) are collected into a list."
   (list a b))
 
 (elisp-koans/deftest
- test-key-params ()
+ elisp-koans/functions-key-params ()
  "Key params allow the user to specify params in any order."
  (should (equal ___ (elisp-koans/cl-defun-with-key-params)))
  (should (equal ___ (elisp-koans/cl-defun-with-key-params :a 11 :b 22)))
@@ -104,7 +104,7 @@ arguments (possibly none) are collected into a list."
   (list a b))
 
 (elisp-koans/deftest
- test-key-params-can-have-defaults ()
+ elisp-koans/functions-key-params-can-have-defaults ()
  "key parameters can have defaults also"
  (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults)))
  (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :a 3 :b 4)))

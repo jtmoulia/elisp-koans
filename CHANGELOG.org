@@ -9,6 +9,7 @@
 *** Added
 
 *** Changed
+    - fix test names lacking =elisp-koans/= prefix
 
 *** Removed
 
