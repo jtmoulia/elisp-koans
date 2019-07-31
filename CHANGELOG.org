@@ -9,6 +9,7 @@
 *** Added
 
 *** Changed
+    - fix paren nesting bug in =elisp-koans/run-test=
 
 *** Removed
 

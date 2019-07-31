@@ -117,7 +117,7 @@ caller is asked for the koan group to test."
 (defun elisp-koans/run-test (test)
   "Run the elisp koan TEST."
   (interactive (list (completing-read "Run koan: " obarray #'elisp-koans//boundp)))
-  ((ert-run-tests-interactively test)))
+  (ert-run-tests-interactively test))
 
 
 (provide 'elisp-koans)
