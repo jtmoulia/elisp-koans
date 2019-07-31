@@ -16,6 +16,7 @@
     - fix test names lacking =elisp-koans/= prefix
 
 *** Removed
+    - commented out / unused assertions
 
 ** 0.1.0 - 2019-07-26
 *** Added

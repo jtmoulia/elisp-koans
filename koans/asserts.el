@@ -19,6 +19,7 @@
  "`t' is true. Replace the blank with `t' to assert it is true"
  (should ___))
 
+
 (elisp-koans/deftest
  elisp-koans/asserts-false ()
  "`nil' is false. Replace the blank with `nil' to assert it is not true"
@@ -41,9 +42,6 @@
 (elisp-koans/deftest
  elisp-koans/asserts-should-error ()
  "try filling out the type of error, in this case an `\'arith-error'"
- (should-error (/ 1 0) :type ___)
- ;; TODO add assert
- ;; (elisp-koans/assert-throws ___ "still an error" (throw 'second-error "still an error"))
- )
+ (should-error (/ 1 0) :type ___))
 
 ;;; asserts.el ends here
