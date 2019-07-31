@@ -7,12 +7,17 @@
   
 ** Unreleased
 *** Added
+
+*** Changed
+
+*** Removed
+
+** 0.3.0 - 2019-07-30
+*** Added
     - alias =elisp-koans= to =elisp-koans/run-tests=
 
 *** Changed
     - fix paren nesting bug in =elisp-koans/run-test=
-
-*** Removed
 
 ** 0.2.0 - 2019-07-30
 *** Added
