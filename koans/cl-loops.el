@@ -19,7 +19,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-basic ()
+ elisp-koans/cl-loops-basic ()
  "Use `cl-loop' to loop through and collect a list."
  (let* ((letters '(:a :b :c :d))
         (loop-result
@@ -29,7 +29,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-compound ()
+ elisp-koans/cl-loops-compound ()
  "With multiple `for' clauses, `cl-loop' ends when the first is exhausted"
  (let* ((letters '(:a :b :c :d))
         (loop-result
@@ -40,7 +40,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-counting-skip-by-syntax ()
+ elisp-koans/cl-loops-counting-skip-by-syntax ()
  "The `by' clause specifies the step interval for `cl-loop'."
  (let* ((letters '(:a :b :c :d))
         (loop-result
@@ -51,7 +51,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-counting-backwards ()
+ elisp-koans/cl-loops-counting-backwards ()
  "The `by' clause can specify a negative step interval `downto' a target."
  (let ((loop-result
         (cl-loop for i from 10 downto -10 by 5
@@ -60,7 +60,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-in-vs-on ()
+ elisp-koans/cl-loops-in-vs-on ()
  "Use `on' to iterate across the list `cdr' as opposed to the `car'."
  (let* ((letters '(:a :b :c))
         (loop-result-in
@@ -72,7 +72,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-in-skip-by ()
+ elisp-koans/cl-loops-in-skip-by ()
  "Use `by' to specify a custom step function for the list."
  (let* ((letters '(:a :b :c :d :e :f))
         (loop-result-in
@@ -90,7 +90,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-across-vector ()
+ elisp-koans/cl-loops-across-vector ()
  "`cl-loop' works across vectors."
  (let* ((my-vector (vector 0 1 2 3 4))
         (loop-result
@@ -107,7 +107,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-over-hash-tables ()
+ elisp-koans/cl-loops-over-hash-tables ()
  "`cl-loop' iterates over keys when passed a hash table.
 `using' allow you to specify the loop's access function."
  (let* ((pairs-in-table
@@ -138,7 +138,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-destructuring-bind ()
+ elisp-koans/cl-loops-destructuring-bind ()
  "`for' supports a `cl-destructuring-bind'-like assignment."
  (let* ((count 0)
         (result
@@ -150,7 +150,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-conditional ()
+ elisp-koans/cl-loops-conditional ()
  "`cl-loop' uses `when' for conditional evaluation."
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)
@@ -162,7 +162,7 @@
   (> x 10))
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-conditional-with-defun ()
+ elisp-koans/cl-loops-conditional-with-defun ()
  "the conditional `when' can accept any function."
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)
@@ -171,7 +171,7 @@
 
 
 (elisp-koans/deftest
- elisp-koans/cl-loop-conditional-with-lambda ()
+ elisp-koans/cl-loops-conditional-with-lambda ()
  "the conditional `when' can also accept a lambda surrounded in parens."
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)

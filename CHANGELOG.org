@@ -9,6 +9,7 @@
 *** Added
 
 *** Changed
+    - fix prefix for =cl-loops= to include trailing =s=
 
 *** Removed
 
