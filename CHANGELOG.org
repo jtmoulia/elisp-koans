@@ -7,6 +7,13 @@
   
 ** Unreleased
 *** Added
+
+*** Changed
+
+*** Removed
+
+** 0.2.0 - 2019-07-30
+*** Added
     - interactive function =elisp-koans/run-tests= for running all tests or
       a specific koan group
     - interactive function =elisp-koans/run-test= for running a single test
@@ -26,6 +33,3 @@
 *** Changed
     - =README.org= to provide an accurate usage description
     - elisp-koans tests to use ERT for test definitions, assertions, and runners
-
-*** Removed
-    
