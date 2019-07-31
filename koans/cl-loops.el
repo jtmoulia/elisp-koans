@@ -130,7 +130,7 @@
                  minimize x into minimized
                  finally (return (list collected counted summed maximized minimized)))))
    (cl-destructuring-bind (col count sum max min) loop-1
-     (should (eq ___ col))
+     (should (equal ___ col))
      (should (eq ___ count))
      (should (eq ___ sum))
      (should (eq ___ max))
