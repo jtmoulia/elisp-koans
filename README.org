@@ -37,13 +37,15 @@
      (should t)
    #+END_SRC
 
-   Once the test is fixed evaluate the test and then run it by calling =ert= and
-   selecting the test: =elisp-koans/asserts-true=. ERT will run the test and
-   report the result.
+   Once the test is fixed evaluate the test and then run it by calling
+   =elisp-koans/run-test= and selecting the test: =elisp-koans/asserts-true=.
+   ERT will run the test and report the result.
 
-   You're ready to move on to the remaining tests in =koans/asserts.el= and
+   You're ready to move on to the remaining koans in =koans/asserts.el= and
    beyond. The variable =elisp-koans-groups= lists the remaining suites of koans
-   which are ordered to provide a tour of Emacs Lisp.
+   which are ordered to provide a tour of Emacs Lisp. As you progress run all of
+   the loaded koans by calling =elisp-koans/run-tests=, or a single koan group
+   by calling it interactively.
 
    To quickly load all of the tests call the interactive function
    =elisp-koans/load-groups=.
