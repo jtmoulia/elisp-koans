@@ -70,8 +70,8 @@ binding them in order to your selected symbol."
  "`dotimes' establishes a local lexical binding which may shadow
 a global value."
   (dotimes (*x* 4)
-    (elisp-koans/true-or-false? ___ (equal "global" *x*)))
-  (elisp-koans/true-or-false? ___ (equal "global" *x*)))
+    (should (eq ___ (equal "global" *x*))))
+  (should (eq ___ (equal "global" *x*))))
 
 
 (elisp-koans/deftest

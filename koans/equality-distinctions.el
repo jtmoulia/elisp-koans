@@ -102,9 +102,9 @@ if x or y is not numeric there will be a compiler error."
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-string-equal ()
  "string-equal is just like string= except that differences in case are ignored."
- (elisp-koans/true-or-false? ___ (string= "Foo" "Foo"))
- (elisp-koans/true-or-false? ___ (string= "Foo" "FOO"))
- (elisp-koans/true-or-false? ___ (string= "together" "frog" :start1 1 :end1 3 :start2 2))
- (elisp-koans/true-or-false? ___ (string-equal "Foo" "FOO")))
+ (should (eq ___ (string= "Foo" "Foo")))
+ (should (eq ___ (string= "Foo" "FOO")))
+ (should (eq ___ (string= "together" "frog" :start1 1 :end1 3 :start2 2)))
+ (should (eq ___ (string-equal "Foo" "FOO"))))
 
 ;;; equality-distinctions.el ends here

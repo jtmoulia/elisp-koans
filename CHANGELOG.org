@@ -12,6 +12,7 @@
     - fix prefix for =cl-loops= to include trailing =s=
 
 *** Removed
+    - usage of deprecated funcion =elisp-koans/assert-euqal=
 
 ** 0.3.0 - 2019-07-30
 *** Added

@@ -62,9 +62,9 @@
 (elisp-koans/deftest
  elisp-koans/nil-false-empty-test-or ()
  "`or' can also take multiple arguments"
- (elisp-koans/true-or-false? ____  (or nil nil nil t nil))
+ (should (eq ___  (or nil nil nil t nil)))
  "`or' returns the first non nil value, or nil if there are none."
- (elisp-koans/assert-equal ____ (or nil nil nil))
- (elisp-koans/assert-equal ____ (or 1 2 3 4 5)))
+ (should (eq ___ (or nil nil nil)))
+ (should (eq ___ (or 1 2 3 4 5))))
 
 ;;; nil-false-empty.el ends here
