@@ -10,9 +10,11 @@
 
 *** Changed
     - fix prefix for =cl-loops= to include trailing =s=
+    - alter =elisp-kaons/run-tests= to run tests in the order provided by
+      =elisp-koans-groups=
 
 *** Removed
-    - usage of deprecated funcion =elisp-koans/assert-euqal=
+    - usage of deprecated funcion =elisp-koans/assert-equal=
 
 ** 0.3.0 - 2019-07-30
 *** Added

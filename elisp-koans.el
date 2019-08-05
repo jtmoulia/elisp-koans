@@ -104,13 +104,16 @@ caller is asked for the koan group to load."
 If called as an interactive function with a prefix argument the
 caller is asked for the koan group to test."
   (interactive (list (elisp-koans//select-group current-prefix-arg)))
-  (let ((test-selector
-         (if koans
-             `(and ,@(mapcar (lambda (koan)
-                               (format "^elisp-koans/%s" koan))
-                             koans))
-           "^elisp-koans/")))
-    (ert-run-tests-interactively test-selector)))
+  (ert-run-tests-interactively
+   `(member
+     ,@(-flatten
+        (mapcar
+         (lambda (group)
+           (let* ((file-name (concat (symbol-name group) ".el"))
+                  (file-path
+                   (concat (file-name-as-directory elisp-koans--groups-directory) file-name)))
+             (cdadr (assoc 'define-symbol-props (cdr (assoc file-path load-history))))))
+         elisp-koans-groups)))))
 
 
 ;;;###autoload
