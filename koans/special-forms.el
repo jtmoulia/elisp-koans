@@ -33,11 +33,9 @@
  "`setf' is used to assign values to symbols. These symbols may refer to
 variables with lexical or dynamic scope."
   (setf elisp-koans-my-name "David")
-  (should (equal elisp-koans-my-name ____))
-  "In SBCL, if the symbol isn't defined as a variable, via a top-level defvar
-  or let statement, the setf call may result in a warning."
+  (should (equal ___ elisp-koans-my-name))
   (setf elisp-koans-my-clones-name elisp-koans-my-name)
-  (should (equal "David" ____))
+  (should (equal ___ "David"))
   (setf elisp-koans-a 5)
   (setf elisp-koans-b 10)
   (setf elisp-koans-c ___)
@@ -119,31 +117,34 @@ input with a set of values and evaluates an expression once a
 match is found"
  (setf elisp-koans-a 4)
  (setf elisp-koans-b
-       (case elisp-koans-a (4 :four)
-             (5 :five)
-             ;; t specifies default behavior
-             (t :unknown)))
- (should (equal ____ elisp-koans-b))
+       (case elisp-koans-a
+         (4 :four)
+         (5 :five)
+         ;; t specifies default behavior
+         (t :unknown)))
+ (should (equal ___ elisp-koans-b))
  "case can also check if a list of values contains
    the input"
  (setf elisp-koans-c
-       (case elisp-koans-a (5 :five)
-             ((3 4) :three-or-four)))
- (should (equal ____ elisp-koans-c)))
+       (case elisp-koans-a
+         (5 :five)
+         ((3 4) :three-or-four)))
+ (should (equal ___ elisp-koans-c)))
 
 
-(defun cartoon-dads (input)
-    "you should be able to complete this case statement"
-  (case input (:this-one-doesnt-happen :fancy-cat)
-              (t :unknown)))
+(defun elisp-koans/cartoon-dads (input)
+  "you should be able to complete this case statement"
+  (case input
+    (:this-one-doesnt-happen :fancy-cat)
+    (t :unknown)))
 
 (elisp-koans/deftest
  elisp-koans/special-forms-your-own-case-statement ()
  "fix this by completing the 'cartoon-dads' function above"
- (should (equal :homer (cartoon-dads :bart)))
- (should (equal :peter (cartoon-dads :stewie)))
- (should (equal :randy (cartoon-dads :stan)))
- (should (equal :unknown (cartoon-dads :space-ghost))))
+ (should (equal :homer (elisp-koans/cartoon-dads :bart)))
+ (should (equal :peter (elisp-koans/cartoon-dads :stewie)))
+ (should (equal :randy (elisp-koans/cartoon-dads :stan)))
+ (should (equal :unknown (elisp-koans/cartoon-dads :space-ghost))))
 
 (elisp-koans/deftest
  elisp-koans/special-forms-limits-of-case ()
@@ -151,10 +152,11 @@ match is found"
 it uses the function eql for comparisons. We will explore
 the implications of this in the equality-distinctions lesson"
  (let* ((name "John")
-        (lastname (case name ("John" "Doe")
-                        ("Max" "Mustermann")
-                        (t "Anonymous"))))
-   (should (equal ____ lastname))))
+        (lastname (case name
+                    ("John" "Doe")
+                    ("Max" "Mustermann")
+                    (t "Anonymous"))))
+   (should (equal ___ lastname))))
 
 (elisp-koans/deftest
  elisp-koans/special-forms-cond ()
@@ -165,6 +167,6 @@ conditions, until a condition is met"
        (cond ((> elisp-koans-a 0) :positive)
              ((< elisp-koans-a 0) :negative)
              (t :zero)))
- (should (equal ____ elisp-koans-c)))
+ (should (equal ___ elisp-koans-c)))
 
 ;;; special-forms.el ends here

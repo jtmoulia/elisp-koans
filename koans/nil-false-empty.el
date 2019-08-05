@@ -31,7 +31,7 @@
  elisp-koans/nil-false-empty-nil-and-empty-list-are-the-same-thing ()
  "`nil' is the same thing as the empty list"
   (should (eq ___ (and '())))
-  (should (eq ___ (not ()))))
+  (should (eq ___ (not '()))))
 
 
 (elisp-koans/deftest
