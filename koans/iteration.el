@@ -60,7 +60,7 @@ upon completion of the iteration."
 binding them in order to your selected symbol."
  (let ((out-list nil))
    (dotimes (y 3) (push y out-list))
-   (elisp-koans/assert-equal out-list ___)))
+   (should (equal ___ out-list))))
 
 
 (defvar *x* "global")
@@ -83,7 +83,7 @@ will be covered in a future koan."
    (loop
     (incf loop-counter)
     (if (>= loop-counter 100) (return loop-counter)))
-   (elisp-koans/assert-equal ___ loop-counter)))
+   (should (equal ___ loop-counter))))
 
 
 (elisp-koans/deftest
@@ -91,7 +91,7 @@ will be covered in a future koan."
  "`mapcar' takes a list and a function.  It returns a new list
 with the function applied to each element of the input"
   (let ((mc-result (mapcar #'evenp '(1 2 3 4 5))))
-    (elisp-koans/assert-equal mc-result ___)))
+    (should (equal ___ mc-result))))
 
 ;; ----
 
@@ -112,10 +112,10 @@ with the function applied to each element of the input"
 (elisp-koans/deftest
  elisp-koans/iteration-mapcar-with-defun ()
  "`mapcar' is a convenient way to apply a function to a collection"
- (elisp-koans/assert-equal (vowels-to-xs "Astronomy") "xstrxnxmy")
+ (should (equal (vowels-to-xs "Astronomy") "xstrxnxmy"))
  (let* ((subjects '("Astronomy" "Biology" "Chemistry" "Linguistics"))
         (mc-result (mapcar #'vowels-to-xs subjects)))
-   (elisp-koans/assert-equal mc-result ___)))
+   (should (equal ___ mc-result))))
 
 ;; ----
 
@@ -124,6 +124,6 @@ with the function applied to each element of the input"
  elisp-koans/iteration-mapcar-with-lambda ()
  "`mapcar' can apply a `lambda' to a collection"
  (let ((mc-result (mapcar (lambda (x) (mod x 10)) '(21 152 403 14))))
-   (elisp-koans/assert-equal mc-result ___)))
+   (should (equal ___ mc-result))))
 
 ;; iteration.el ends here

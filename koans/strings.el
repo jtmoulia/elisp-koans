@@ -102,7 +102,7 @@ the position of characters in strings (or elements in sequences)"
  elisp-koans/strings-finding-substrings ()
  "search finds subsequences"
  (let ((title "A supposedly fun thing I'll never do again"))
-   (elisp-koans/assert-equal 2 (search "supposedly" title))
-   (elisp-koans/assert-equal 12 (search "CHANGETHISWORD" title))))
+   (should (eq 2 (search "supposedly" title)))
+   (should (eq 13 (search "CHANGETHISWORD" title)))))
 
 ;;; strings.el ends here

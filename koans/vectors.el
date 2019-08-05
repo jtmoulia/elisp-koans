@@ -56,9 +56,9 @@ and expand it using `vconcat'"
 (elisp-koans/deftest
  elisp-koans/vectors-list-to-bool-vector ()
  "you must complete `list-to-bool-vector'"
- (elisp-koans/assert-true (bool-vector-p (list-to-bool-vector '(nil nil t t nil))))
- (elisp-koans/assert-equal (aref (list-to-bool-vector '(nil)) 0) nil)
- (elisp-koans/assert-equal (aref (list-to-bool-vector '(nil t)) 1) t)
- (elisp-koans/assert-equal (length (list-to-bool-vector '(nil nil t t nil nil t t))) 8))
+ (should (bool-vector-p (list-to-bool-vector '(nil nil t t nil))))
+ (should-not (aref (list-to-bool-vector '(nil))))
+ (should (aref (list-to-bool-vector '(nil t)) 1))
+ (should (equal 8 (length (list-to-bool-vector '(nil nil t t nil nil t t))))))
 
 ;;; vectors.el ends here

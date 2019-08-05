@@ -47,9 +47,9 @@
  elisp-koans/cl-structures-struct-defaults ()
  "Struct fields can have default values and fields without explicit defaults default to nil."
  (let ((player-2 (make-baseball-player)))
-   (elisp-koans/assert-equal ___ (baseball-player-position player-2))
-   (elisp-koans/assert-equal ___ (baseball-player-team player-2))
-   (elisp-koans/assert-equal ___ (baseball-player-name player-2))))
+   (should (equal ___ (baseball-player-position player-2)))
+   (should (equal ___ (baseball-player-team player-2)))
+   (should (equal ___ (baseball-player-name player-2)))))
 
 
 (defstruct (american-football-player (:conc-name nfl-guy-)) name position team)
@@ -60,7 +60,7 @@
 a nickname to make code readable with the :conc-name option."
  (let ((player-3 (make-american-football-player
                   :name "Drew Brees" :position :QB :team "Saints")))
-   (elisp-koans/assert-equal ___ (nfl-guy-position player-3))))
+   (should (equal ___ (nfl-guy-position player-3)))))
 
 
 (cl-defstruct (nba-contract (:include basketball-player)) salary start-year end-year)

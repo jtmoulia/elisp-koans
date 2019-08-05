@@ -36,8 +36,8 @@ with `cl-labels' may refer to themselves, whereas local functions
 defined with `cl-flet' may not."
  (cl-flet ((elisp-koans/add (a b) (* a b)))
    "`cl-flet' binds a function to a name within a lexical environment"
-   (elisp-koans/assert-equal ___ (elisp-koans/add 7 11)))
- (elisp-koans/assert-equal ___  (elisp-koans/add 7 11)))
+   (should (equal ___ (elisp-koans/add 7 11))))
+ (should (equal ___  (elisp-koans/add 7 11))))
 
 
 ;; borrowed from Common Lisp The Language chapter 5.2.2
@@ -148,21 +148,6 @@ to execute that function immediately, or put it somewhere for later use."
    (push (lambda (a b) (* a b)) list-of-functions)
    (push (lambda (a b) (- a b)) list-of-functions)
    (should (equal ___ (funcall (second list-of-functions)) 2 33))))
-
-
-; returns sign x
-;; (defun sign-of (x)
-;;   (if (< x 0) (return-from sign-of -1))
-;;   (if (eq x 0) (return-from sign-of 0))
-;;   1)
-
-;; (elisp-koans/define-test test-return-from-function-early
-;;    (elisp-koans/assert-equal (sign-of -5.5) ___)
-;;    (elisp-koans/assert-equal (sign-of 0) ___)
-;;    (elisp-koans/assert-equal (sign-of ___) 1))
-
-
-;; ----
 
 
 (elisp-koans/deftest
