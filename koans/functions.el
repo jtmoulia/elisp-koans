@@ -139,7 +139,7 @@ arguments (possibly none) are collected into a list."
  elisp-koans/functions-lambdas-are-nameless-functions ()
  "A `lambda' form defines a function, but with no name.  It is possible
 to execute that function immediately, or put it somewhere for later use."
- (should (eq ___ ((lambda (a b)) (+ a b)) 10 9))
+ (should (eq ___ ((lambda (a b) (+ a b)) 10 9)))
  (let ((my-function))
    (setf my-function (lambda (a b) (* a b)))
    (should (eq ___ (funcall my-function 11 9))))
@@ -147,7 +147,7 @@ to execute that function immediately, or put it somewhere for later use."
    (push (lambda (a b) (+ a b)) list-of-functions)
    (push (lambda (a b) (* a b)) list-of-functions)
    (push (lambda (a b) (- a b)) list-of-functions)
-   (should (equal ___ (funcall (second list-of-functions)) 2 33))))
+   (should (equal ___ (funcall (second list-of-functions) 2 33)))))
 
 
 (elisp-koans/deftest
