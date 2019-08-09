@@ -112,7 +112,7 @@ caller is asked for the koan group to test."
            (let* ((file-name (concat (symbol-name group) ".el"))
                   (file-path
                    (concat (file-name-as-directory elisp-koans--groups-directory) file-name)))
-             (cdadr (assoc 'define-symbol-props (cdr (assoc file-path load-history))))))
+             (reverse (cdadr (assoc 'define-symbol-props (cdr (assoc file-path load-history)))))))
          elisp-koans-groups)))))
 
 
@@ -122,9 +122,30 @@ caller is asked for the koan group to test."
   (interactive (list (completing-read "Run koan: " obarray #'elisp-koans//boundp)))
   (ert-run-tests-interactively test))
 
+;;;###autoload
+(defun elisp-koans/contemplate ()
+  "Run koans in order and jump to next failure or blank."
+  (interactive)
+  (elisp-koans/load-groups)
+  (elisp-koans/run-tests)
+  ;; Note: This doesn't check for when the koan tests are "Aborted." rather than "Finished."
+  (let ((retry-for 3.0)
+        (retry-interval 0.2))
+    (while (not (re-search-forward "^Finished\.$" nil t))
+      (if ((>= 0 retries))
+          (error "elisp-koans did not succcessfully complete!"))
+      (sit-for retry-interval)
+      (setf retries (- retry-for retry-interval))))
+  (forward-button 3)
+  (let ((failure (button-label (button-at (point)))))
+    (push-button)
+    (re-search-forward "___?_?")
+    (backward-to-word)
+    (forward-char)
+    (message "%s has damaged your karma" failure)))
 
 ;;;###autoload
-(defalias 'elisp-koans 'elisp-koans/run-tests)
+(defalias 'elisp-koans 'elisp-koans/contemplate)
 
 (provide 'elisp-koans)
 
