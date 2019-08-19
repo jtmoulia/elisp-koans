@@ -49,9 +49,9 @@ variable in turn"
 upon completion of the iteration."
  (let ((my-list '(1 2 3 4))
        (my-return))
-   (dolist (x my-list my-return)
-     (push (* x x) my-return))
-   (should (equal ___ my-return))))
+   (should (equal '(16 9 4 1)
+                  (dolist (x my-list my-return)
+                    (push (* x x) my-return))))))
 
 
 (elisp-koans/deftest
