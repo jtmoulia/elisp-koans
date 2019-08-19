@@ -48,7 +48,7 @@ the third form using those bindings"
    (should (equal ___ y))
    "multiple-value-setq is like setf, but can set multiple variables"
    (multiple-value-setq (x y) (values :v1 :v2))
-   (should (equal (list x y) '(:v1 :v2)))
+   (should (equal '(:v1 :v2) (list x y)))
    (multiple-value-setq (x y) (next-fib 5 8))
    (should (equal ___ (list x y)))))
 

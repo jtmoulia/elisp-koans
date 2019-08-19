@@ -22,11 +22,11 @@ conditional"
    (if t
        (setf result "true value")
      (setf result "false value"))
-   (should (equal result ___))
+   (should (equal ___ result))
    (if nil
        (setf result "true value")
      (setf result "false value"))
-   (should (equal result ___))))
+   (should (equal ___ result))))
 
 
 (elisp-koans/deftest
@@ -43,10 +43,10 @@ conditional"
      (unless (> x 5)
        (setf result-2 x)
        (push x unless-nums)))
-   (should (equal result-1 ___))
-   (should (equal result-2 ___))
-   (should (equal when-nums ___))
-   (should (equal unless-nums ___))))
+   (should (equal ___ result-1))
+   (should (equal ___ result-2))
+   (should (equal ___ when-nums))
+   (should (equal ___ unless-nums))))
 
 
 (elisp-koans/deftest

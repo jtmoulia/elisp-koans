@@ -37,7 +37,7 @@
 element like `(cons new-element some-list)'"
  (let (nums)
    (setf nums (cons :one nums))
-   (should (equal nums '(:one)))
+   (should (equal '(:one) nums))
 
    (setf nums (cons :two nums))
    (should (equal ___ nums))
@@ -110,7 +110,7 @@ element of a list."
 
 
 (elisp-koans/deftest
- elisp-koans/list-breakdown ()
+ elisp-koans/lists-breakdown ()
  "`car' (aka. 'first') returns the first value in a list"
  (should (equal ___ (car '(1 2 3))))
  (should (equal ___ (car nil)))
