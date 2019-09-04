@@ -9,9 +9,19 @@
 *** Added
 
 *** Changed
+
+*** Removed
+
+** 0.4.0 - 2019-09-03
+*** Added
+    - =elisp-koans/contemplate= function as main entrypoint for running tests
+
+*** Changed
     - fix prefix for =cl-loops= to include trailing =s=
-    - alter =elisp-kaons/run-tests= to run tests in the order provided by
+    - alter =elisp-koans/run-tests= to run tests in the order provided by
       =elisp-koans-groups=
+    - fix styling to be more consistent across tests
+    - fix parentheses for lambda (@bcfurtado)
 
 *** Removed
     - usage of deprecated funcion =elisp-koans/assert-equal=
