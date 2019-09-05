@@ -26,7 +26,7 @@
 (elisp-koans/deftest
  elisp-koans/vectors-length ()
  "`length' works on vectors"
- (should (eq (length [1 2 3]) ___)))
+ (should (eq ___ (length [1 2 3]))))
 
 
 (elisp-koans/deftest
@@ -41,12 +41,15 @@ and expand it using `vconcat'"
 (elisp-koans/deftest
  elisp-koans/vectors-bool-operations ()
  "bool vectors can be compared using operations"
- (should (equal ___ (vconcat(bool-vector-intersection (bool-vector t t nil nil)
-                                                      (bool-vector t nil t nil)))))
- (should (equal ___ (vconcat (bool-vector-union (bool-vector t t nil nil)
-                                                (bool-vector t nil t nil)))))
- (should (equal ___ (vconcat (bool-vector-exclusive-or (bool-vector t t nil nil)
-                                                       (bool-vector t nil t nil))))))
+ (should (equal ___
+                (vconcat (bool-vector-intersection (bool-vector t t nil nil)
+                                                   (bool-vector t nil t nil)))))
+ (should (equal ___
+                (vconcat (bool-vector-union (bool-vector t t nil nil)
+                                            (bool-vector t nil t nil)))))
+ (should (equal ___
+                (vconcat (bool-vector-exclusive-or (bool-vector t t nil nil)
+                                                   (bool-vector t nil t nil))))))
 
 
 (defun list-to-bool-vector (my-list)

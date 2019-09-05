@@ -18,10 +18,10 @@
  elisp-koans/mapcar-basics ()
  "apply a function to each member of a list using `mapcar'"
  (defun times-two (x) (* x 2))
- (should (equal ____ (mapcar #'times-two '(1 2 3))))
- (should (equal ____ (mapcar #'first '((3 2 1)
-                                       ("little" "small" "tiny")
-                                       ("pigs" "hogs" "swine"))))))
+ (should (equal ___ (mapcar #'times-two '(1 2 3))))
+ (should (equal ___ (mapcar #'first '((3 2 1)
+                                      ("little" "small" "tiny")
+                                      ("pigs" "hogs" "swine"))))))
 
 
 (elisp-koans/deftest
@@ -35,14 +35,14 @@ by applying a binary function to the list elements."
 (elisp-koans/deftest
  elisp-koans/reduce-right-to-left ()
  "The keyword :from-end allows us to apply reduce from right to left."
- (should (equal ___ (reduce #'+ '(1 2 3 4)) :from-end t))
- (should (equal ___ (reduce #'expt '(2 3 2)) :from-end t)))
+ (should (equal ___ (reduce #'+ '(1 2 3 4) :from-end t)))
+ (should (equal ___ (reduce #'expt '(2 3 2) :from-end t))))
 
 
 (elisp-koans/deftest
  elisp-koans/reduce-with-initial-value ()
  "`reduce' accepts an optional initial value to reduce"
- (should (equal ___ (reduce #'expt '(10 21 34 43)) :initial-value 1))
- (should (equal ___ (reduce #'expt '(10 21 34 43)) :initial-value 0)))
+ (should (equal ___ (reduce #'expt '(10 21 34 43) :initial-value 1)))
+ (should (equal ___ (reduce #'expt '(10 21 34 43) :initial-value 0))))
 
 ;; mapcar-and-reduce.el ends here
