@@ -98,24 +98,21 @@
    (should (equal ___ loop-result))))
 
 
-(defvar books-to-heros)
-(setf books-to-heros (make-hash-table :test 'equal))
-(setf (gethash "The Hobbit" books-to-heros) "Bilbo")
-(setf (gethash "Where The Wild Things Are" books-to-heros) "Max")
-(setf (gethash "The Wizard Of Oz" books-to-heros) "Dorothy")
-(setf (gethash "The Great Gatsby" books-to-heros) "James Gatz")
-
-
 (elisp-koans/deftest
- elisp-koans/cl-loops-over-hash-tables ()
- "`cl-loop' iterates over keys when passed a hash table.
+  elisp-koans/cl-loops-over-hash-tables ()
+  "`cl-loop' iterates over keys when passed a hash table.
 `using' allow you to specify the loop's access function."
- (let* ((pairs-in-table
-         (cl-loop for k being the hash-keys in books-to-heros
-                  using (hash-value v)
-                  collect (list k v))))
-   (should (eq ___ (length pairs-in-table)))
-   (should (eq ___ (find '("The Hobbit" "Bilbo")) pairs-in-table :test #'equal))))
+  (let ((books-to-heroes (make-hash-table :test 'equal)))
+    (setf (gethash "The Hobbit" books-to-heroes) "Bilbo")
+    (setf (gethash "Where The Wild Things Are" books-to-heroes) "Max")
+    (setf (gethash "The Wizard Of Oz" books-to-heroes) "Dorothy")
+    (setf (gethash "The Great Gatsby" books-to-heroes) "James Gatz")
+    (let* ((pairs-in-table
+            (cl-loop for k being the hash-keys in books-to-heroes
+                    using (hash-value v)
+                    collect (list k v))))
+      (should (eq ___ (length pairs-in-table)))
+      (should (eq ___ (find '("The Hobbit" "Bilbo")) pairs-in-table :test #'equal)))))
 
 
 (elisp-koans/deftest

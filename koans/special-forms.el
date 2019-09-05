@@ -162,11 +162,10 @@ the implications of this in the equality-distinctions lesson"
  elisp-koans/special-forms-cond ()
  "cond is the general purpose form for checking multiple
 conditions, until a condition is met"
- (setf elisp-koans-a 4)
- (setf c
-       (cond ((> elisp-koans-a 0) :positive)
-             ((< elisp-koans-a 0) :negative)
-             (t :zero)))
- (should (equal ___ elisp-koans-c)))
+ (let* ((a 4)
+        (c (cond ((> elisp-koans-a 0) :positive)
+                 ((< elisp-koans-a 0) :negative)
+                 (t :zero))))
+   (should (equal ___ c)))))
 
 ;;; special-forms.el ends here

@@ -21,14 +21,13 @@
 
 ;; Dolist evaluates a form for every element of a list.
 
-(defvar some-primes '(10301 11311 19991 999565999))
-
 (elisp-koans/deftest
  elisp-koans/iteration-dolist ()
  "`dolist' iterates over values in a list, binding each value to a lexical
 variable in turn"
- (let ((how-many-in-list 0)
-       (biggest-in-list (first some-primes)))
+ (let* ((some-primes '(10301 11311 19991 999565999))
+        (how-many-in-list 0)
+        (biggest-in-list (first some-primes)))
    "this dolist loops over some-primes, defined above"
    (dolist (one-prime some-primes)
      (if (> one-prime biggest-in-list)
@@ -63,15 +62,14 @@ binding them in order to your selected symbol."
    (should (equal ___ out-list))))
 
 
-(defvar *x* "global")
-
 (elisp-koans/deftest
  elisp-koans/iteration-dotimes-binding ()
  "`dotimes' establishes a local lexical binding which may shadow
 a global value."
-  (dotimes (*x* 4)
-    (should (eq ___ (equal "global" *x*))))
-  (should (eq ___ (equal "global" *x*))))
+ (let ((outer-var "outer"))
+   (dotimes (outer-var 4)
+     (should (eq ___ (equal "outer" outer-var))))
+   (should (eq ___ (equal "outer" outer-var)))))
 
 
 (elisp-koans/deftest

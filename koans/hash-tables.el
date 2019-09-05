@@ -101,9 +101,7 @@ The programmer must be careful to know which equality predicate is right."
    (setf (gethash "two" expected) "zwei")
 
    (setf (gethash "one" babel-fish) "eins")
-   (setf (gethash "two" babel-fish) ____)
-
-   (should (equalp babel-fish expected))))
+   (setf (gethash "two" babel-fish) ____)))
 
 
 (elisp-koans/deftest

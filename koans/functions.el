@@ -37,7 +37,7 @@ defined with `cl-flet' may not."
  (cl-flet ((elisp-koans/add (a b) (* a b)))
    "`cl-flet' binds a function to a name within a lexical environment"
    (should (equal ___ (elisp-koans/add 7 11))))
- (should (equal ___  (elisp-koans/add 7 11))))
+ (should (equal ___ (elisp-koans/add 7 11))))
 
 
 ;; borrowed from Common Lisp The Language chapter 5.2.2
@@ -52,8 +52,6 @@ defined with `cl-flet' may not."
  (should (equal ___ (elisp-koans/func-with-opt-params :test-1)))
  (should (equal ___ (elisp-koans/func-with-opt-params))))
 
-;; ----
-
 
 (cl-defun elisp-koans/func-with-opt-params-and-indication (&optional (a 2 a?) (b 3 b?))
   (list a a? b b?))
@@ -67,8 +65,6 @@ parameter binding has the form (var default-form supplied-p)."
    (should (equal ___ (elisp-koans/func-with-opt-params-and-indication :test-1)))
    (should (equal ___ (elisp-koans/func-with-opt-params-and-indication))))
 
-;; ----
-
 
 (defun elisp-koans/func-with-rest-params (&rest x)
   x)
@@ -80,8 +76,6 @@ arguments (possibly none) are collected into a list."
  (should (equal ___ (elisp-koans/func-with-rest-params)))
  (should (equal ___ (elisp-koans/func-with-rest-params 1)))
  (should (equal ___ (elisp-koans/func-with-rest-params 1 :two 333))))
-
-;; ----
 
 
 (cl-defun elisp-koans/cl-defun-with-key-params (&key a b)
@@ -99,7 +93,7 @@ arguments (possibly none) are collected into a list."
  (should (equal ___ (elisp-koans/cl-defun-with-key-params :b 22 :a 0))))
 
 
-(cl-defun elisp-koans/cl-defun-key-params-can-have-defaults (&key  (a 3) (b 4))
+(cl-defun elisp-koans/cl-defun-key-params-can-have-defaults (&key (a 3) (b 4))
   "Return keyword arguments A and B as a list."
   (list a b))
 
@@ -112,9 +106,6 @@ arguments (possibly none) are collected into a list."
  (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :b 22)))
  ;; order is not important
  (should (equal ___ (elisp-koans/cl-defun-key-params-can-have-defaults :b 22 :a 0))))
-
-
-;; ----
 
 
 ;; borrowed from common lisp the language 5.2.2

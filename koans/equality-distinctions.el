@@ -87,8 +87,7 @@ the other type without loss and still exhibit equality."
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-numeric-equal ()
- "(= x y) is only for numerics
-and can take multiple arguments
+ "(= x y) is only for numerics and can take multiple arguments
 if x or y is not numeric there will be a compiler error."
  (should (eq ___ (= 99.0 99 99.000)))
  (should (eq ___ (= 0 1 -1)))
@@ -104,7 +103,6 @@ if x or y is not numeric there will be a compiler error."
  "string-equal is just like string= except that differences in case are ignored."
  (should (eq ___ (string= "Foo" "Foo")))
  (should (eq ___ (string= "Foo" "FOO")))
- (should (eq ___ (string= "together" "frog" :start1 1 :end1 3 :start2 2)))
  (should (eq ___ (string-equal "Foo" "FOO"))))
 
 ;;; equality-distinctions.el ends here
