@@ -50,6 +50,12 @@
    To quickly load all of the tests call the interactive function
    =elisp-koans/load-groups=.
 
+** The Cheatsheet
+
+   You can check your answers against the cheatsheet, i.e. a branch called
+   =cheatsheet= which has the koan solutions filled in. This branch is kept up
+   to date by staying one commit ahead of =master=
+
 ** Credits
 
    =elisp-koans= is adapted from Google's [[https://github.com/google/lisp-koans][Common Lisp Koans]], which was in turn
