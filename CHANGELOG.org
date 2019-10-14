@@ -12,6 +12,17 @@
 
 *** Removed
 
+** 0.5.0 - 2019-10-13
+*** Added
+    - information on the cheatsheet branch
+
+*** Changed
+    - fix styling to be more consistent acress koans
+
+*** Removed
+    - some variables which were polluting the local namespace were
+      refactored out to use scoped definitions
+
 ** 0.4.0 - 2019-09-03
 *** Added
     - =elisp-koans/contemplate= function as main entrypoint for running tests
