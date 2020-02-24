@@ -166,6 +166,6 @@ conditions, until a condition is met"
         (c (cond ((> elisp-koans-a 0) :positive)
                  ((< elisp-koans-a 0) :negative)
                  (t :zero))))
-   (should (equal ___ c)))))
+   (should (equal ___ c))))
 
 ;;; special-forms.el ends here

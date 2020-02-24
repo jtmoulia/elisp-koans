@@ -105,25 +105,6 @@ The programmer must be careful to know which equality predicate is right."
 
 
 (elisp-koans/deftest
- elisp-koans/hash-tables-key-membership ()
- "hash tables use multiple value return to tell you if the key exists"
- (let ((prev-pres (make-hash-table :test #'equal))
-       (value-and-exists nil))
-   (setf (gethash "Obama" prev-pres) "Bush")
-   (setf (gethash "Lincoln" prev-pres) "Buchanan")
-   (setf (gethash "Washington" prev-pres) nil)
-
-   (setf value-and-exists (multiple-value-list (gethash "Obama" prev-pres)))
-   (should (equal value-and-exists '("Bush" t)))
-   (setf value-and-exists (multiple-value-list (gethash "Lincoln" prev-pres)))
-   (should (equal value-and-exists ____))
-   (setf value-and-exists (multiple-value-list (gethash "Washington" prev-pres)))
-   (should (equal value-and-exists ____))
-   (setf value-and-exists (multiple-value-list (gethash "Franklin" prev-pres)))
-   (should (equal value-and-exists ____))))
-
-
-(elisp-koans/deftest
  elisp-koans/hash-tables-make-your-own ()
  "make a hash table that meets the following conditions"
  (let ((colors (make-hash-table))
