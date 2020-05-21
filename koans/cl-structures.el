@@ -66,7 +66,7 @@ a nickname to make code readable with the :conc-name option."
 (cl-defstruct (nba-contract (:include basketball-player)) salary start-year end-year)
 
 (elisp-koans/deftest
- test-structure-extension ()
+ elisp-koans/test-structure-extension ()
  "Structs can be defined as EXTENSIONS to previous structures.
 This form of inheritance allows composition of objects."
     (let ((contract-1 (make-nba-contract
@@ -86,7 +86,7 @@ This form of inheritance allows composition of objects."
 
 
 (elisp-koans/deftest
- test-structure-copying ()
+ elisp-koans/test-structure-copying ()
  "Copying of structs is handled with the copy-{name} form.  Note that copying is shallow."
  (let ((manning-1 (make-american-football-player :name "Manning" :team '("Colts" "Broncos")))
        (manning-2 (make-american-football-player :name "Manning" :team '("Colts" "Broncos"))))
@@ -97,7 +97,7 @@ This form of inheritance allows composition of objects."
    (should (eq ___ (equalp manning-1 manning-2)))
    ;; copied structs are much the same.
    (should (eq ___ (equalp manning-1 (copy-american-football-player manning-1))))
-   (should (eq ___ (eq     manning-1 (copy-american-football-player manning-1))))
+   (should (eq ___ (eq manning-1 (copy-american-football-player manning-1))))
    ;; note that the copying is shallow
    (let ((shallow-copy (copy-american-football-player manning-1)))
      (setf (car (nfl-guy-team manning-1)) "Giants")
