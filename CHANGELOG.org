@@ -12,6 +12,16 @@
 
 *** Removed
 
+** 0.6.0 - 2020-05-20
+*** Changed
+- Fix unmatched parenthesis in special forms koans (@cniles)
+- Fix typo of koan name in special forms (@argvniyx)
+- Fix cl-structures and evaluation koans missing =elisp-koans/= prefix
+  (@argvniyx)
+
+*** Removed
+- Hash table test which was unused (@cniles)
+
 ** 0.5.0 - 2019-10-13
 *** Added
     - information on the cheatsheet branch
@@ -20,12 +30,13 @@
     - fix styling to be more consistent acress koans
 
 *** Removed
-    - some variables which were polluting the local namespace were
-      refactored out to use scoped definitions
+    - some variables which were polluting the local namespace were refactored
+      out to use scoped definitions
 
 ** 0.4.0 - 2019-09-03
 *** Added
     - =elisp-koans/contemplate= function as main entrypoint for running tests
+      (@matthew-piziak)
 
 *** Changed
     - fix prefix for =cl-loops= to include trailing =s=
