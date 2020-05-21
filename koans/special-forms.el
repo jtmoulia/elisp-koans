@@ -62,7 +62,7 @@ value, if it exists, is visible again."
 
 
 (elisp-koans/deftest
- elisp-koans/spcial-forms-let-default-value ()
+ elisp-koans/special-forms-let-default-value ()
  "`let' vars are bound to a default value."
  (let ((x))
    (should (equal ___ x))))

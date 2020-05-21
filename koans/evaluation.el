@@ -44,7 +44,7 @@ with the function name the first element of that list."
 
 
 (elisp-koans/deftest
- test-quoting-behavior ()
+ elisp-koans/test-quoting-behavior ()
  "Preceding a list with a quote (') will tell lisp not to evaluate a list.
 The quote special form suppresses normal evaluation, and instead returns
 the literal list.
