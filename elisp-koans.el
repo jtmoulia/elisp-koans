@@ -1,10 +1,22 @@
+;;; elisp-koans.el --- Koans for learning elisp
+;;
+;; Author: Thomas Moulia <jtmoulia@pocketknife.io>
+;; Version: 0.6.0
+;; Keywords: elisp, educational
+;; URL: https://github.com/jtmoulia/elisp-koans
+
+;;; Commentary:
+;;
+;; Elisp-koans provides a set of a set of tests which you can fix as a tour of
+;; elisp.
+
 ;; -*- lexical-binding: t; -*-
 
 (require 'cl)
 
 (defconst elisp-koans--blanks '(__ ___ ____))
 (defconst elisp-koans--groups-directory (expand-file-name "koans/")
-  "Directory where the elisp koan groups are stored")
+  "Directory where the elisp koan groups are stored.")
 (defvar elisp-koans-groups
   '(
     asserts
@@ -48,6 +60,7 @@
 
 
 (defun elisp-koans//replace (test substitution lst)
+  "Where TEST is true use splice SUBSTITUTION into LST."
   (if (null lst)
       '()
     (let* ((head (car lst))
@@ -75,7 +88,7 @@
 
 ;;;###autoload
 (defmacro elisp-koans/deftest (name args &rest form)
-  "Define a test called NAME with DESCRIPTION and a body of FORM.
+  "Define a test called NAME accepting ARGS with a body of FORM.
 
 This wraps `ert-deftest' with a check for blanks."
   `(ert-deftest ,name ,args
@@ -130,10 +143,11 @@ caller is asked for the koan group to test."
   (elisp-koans/run-tests)
   ;; Note: This doesn't check for when the koan tests are "Aborted." rather than "Finished."
   (let ((retry-for 3.0)
-        (retry-interval 0.2))
+        (retry-interval 0.2)
+        (retries 3))
     (while (not (re-search-forward "^Finished\.$" nil t))
-      (if ((>= 0 retries))
-          (error "elisp-koans did not succcessfully complete!"))
+      (if (>= 0 retries)
+          (error "Elisp-koans did not succcessfully complete!"))
       (sit-for retry-interval)
       (setf retries (- retry-for retry-interval))))
   (forward-button 3)
