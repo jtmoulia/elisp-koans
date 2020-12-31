@@ -3,13 +3,13 @@
 ** What is elisp-koans?
    
    =elisp-koans= helps you learn [[info:elisp:Introduction][Emacs Lisp]] (elisp) via test-driven development.
-   You're provided with suites of tests describing components of the elisp
-   syntax and environment. Fixing the tests leads you on a tutorial of elisp.
+   You're provided with suites of tests describing the elisp syntax and
+   environment. Fixing the tests leads you on a tutorial of elisp.
    
-   These koans are for those learning to code in Emacs Lisp and customize Emacs.
-   You should already be able to make your way around Emacs plus be able to
-   call interactive functions, evaluate code in the buffer, and look up
-   documentation.
+   These koans are intended for those learning to code in Emacs Lisp and
+   - customize Emacs. You should already be able to [[https://www.gnu.org/software/emacs/tour/][make your way around Emacs]]
+   plus be able to [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Call.html][call interactive functions]], [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Eval.html][evaluate code in the buffer]], and
+   [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Help-Functions.html][look up documentation]].
 
 ** Usage
 
@@ -19,7 +19,8 @@
      git clone https://github.com/jtmoulia/elisp-koans
    #+END_SRC
 
-   First load [[file:elisp-koans.el][elisp-koans.el]] by opening it in Emacs then running =eval-buffer=.
+   First load [[file:elisp-koans.el][elisp-koans.el]] by opening it in Emacs then running the interactive
+   command =eval-buffer=.
 
    Next open up [[file:koans/asserts.el::(elisp-koans/define-test][koans/asserts.el]] and navigate to the first test:
 
@@ -44,11 +45,8 @@
    You're ready to move on to the remaining koans in =koans/asserts.el= and
    beyond. The variable =elisp-koans-groups= lists the remaining suites of koans
    which are ordered to provide a tour of Emacs Lisp. As you progress run all of
-   the loaded koans by calling =elisp-koans/run-tests=, or a single koan group
-   by calling it interactively.
-
-   To quickly load all of the tests call the interactive function
-   =elisp-koans/load-groups=.
+   the loaded koans by calling =elisp-koans/contemplate=, or a single test by
+   calling =elisp-koans/run-test=.
 
 ** The Cheatsheet
 
