@@ -100,7 +100,7 @@ if x or y is not numeric there will be a compiler error."
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-string-equal ()
- "string-equal is just like string= except that differences in case are ignored."
+ "string-equal is just like string=."
  (should (eq ___ (string= "Foo" "Foo")))
  (should (eq ___ (string= "Foo" "FOO")))
  (should (eq ___ (string-equal "Foo" "FOO"))))
