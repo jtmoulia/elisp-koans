@@ -163,8 +163,8 @@ the implications of this in the equality-distinctions lesson"
  "cond is the general purpose form for checking multiple
 conditions, until a condition is met"
  (let* ((a 4)
-        (c (cond ((> elisp-koans-a 0) :positive)
-                 ((< elisp-koans-a 0) :negative)
+        (c (cond ((> a 0) :positive)
+                 ((< a 0) :negative)
                  (t :zero))))
    (should (equal ___ c))))
 
