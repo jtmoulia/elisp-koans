@@ -54,9 +54,9 @@ parameter."
  (should (equal ___ (format "%d" 42)))
  (should (equal ___ (format "%d" #o52)))
  (should (equal ___ (format "%d" #x2A)))
- "=%o= specifies a decimal number"
+ "=%o= specifies a octal number"
  (should (equal ___ (format "%o" 42)))
- "=%x= specifies a hex number with capital characters"
+ "=%x= specifies a hex number with lowercase characters"
  (should (equal ___ (format "%x" 42)))
  "=%X= specifies a hex number with capital characters"
  (should (equal ___ (format "%X" 42)))
