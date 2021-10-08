@@ -12,7 +12,7 @@
 
 ;; -*- lexical-binding: t; -*-
 
-(require 'cl)
+(require 'cl-lib)
 
 (defconst elisp-koans--blanks '(__ ___ ____))
 (defconst elisp-koans--groups-directory (expand-file-name "koans/")
