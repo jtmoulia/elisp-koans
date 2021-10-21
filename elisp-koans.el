@@ -13,6 +13,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (require 'cl-lib)
+(require 'dash)
 
 (defconst elisp-koans--blanks '(__ ___ ____))
 (defconst elisp-koans--groups-directory (expand-file-name "koans/")
