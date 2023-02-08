@@ -52,7 +52,7 @@
    (should (equal ___ (baseball-player-name player-2)))))
 
 
-(defstruct (american-football-player (:conc-name nfl-guy-)) name position team)
+(cl-defstruct (american-football-player (:conc-name nfl-guy-)) name position team)
 
 (elisp-koans/deftest
  elisp-koans/cl-structures-abbreviated-access ()
