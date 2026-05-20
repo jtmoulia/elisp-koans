@@ -21,7 +21,7 @@
  elisp-koans/strings-double-quoted-strings ()
  "double quoted strings are strings"
  (let ((my-string "do or do not"))
-   (should (eq ___ (typep my-string 'string)))
+   (should (eq ___ (cl-typep my-string 'string)))
    "use `stringp' to check whether a value is a string"
    (should (eq ___ (stringp my-string)))
    (should (eq ___ (stringp '(a list))))
@@ -61,17 +61,17 @@
    (should (equal "Marx" (substring groucho 8)))
    (should (equal ___ (substring groucho 0 6)))
    (should (equal ___ (substring groucho -4 -1)))
-   "since strings are sequences, you may use `subseq', aliased from `cl-subseq'"
-   (should (equal ___ (subseq groucho 0 7)))
+   "since strings are sequences, you may also use `cl-subseq'"
+   (should (equal ___ (cl-subseq groucho 0 7)))
    (should (equal ___ (cl-subseq groucho 1 5)))))
 
 
 (elisp-koans/deftest
  elisp-koans/strings-accessing-individual-characters ()
  "char literals are the character preceded by a questionmark"
- (should (eq ___ (typep ?a 'character)))
- (should (eq ___ (typep "A" 'character)))
- (should (eq ___ (typep ?a 'string))))
+ (should (eq ___ (cl-typep ?a 'character)))
+ (should (eq ___ (cl-typep "A" 'character)))
+ (should (eq ___ (cl-typep ?a 'string))))
 
 
 (elisp-koans/deftest
@@ -81,28 +81,27 @@
        (b "is")
        (c "unwieldy")
        (d "less"))
-   "concatenating strings in lisp's `concatenate', aliased from `cl-concatenate'
-is a little cumbersome"
-   (should (equal ___ (concatenate 'string a " " b " " c)))
+   "concatenating strings with `cl-concatenate' is a little cumbersome"
+   (should (equal ___ (cl-concatenate 'string a " " b " " c)))
    (should (equal ___ (concat a " " b " " d " " c)))))
 
 
 (elisp-koans/deftest
  elisp-koans/strings-searching-for-characters ()
- "you can use `position', aliased from `cl-position', to detect
-the position of characters in strings (or elements in sequences)"
- (should (eq ___ (position ?b "abc")))
- (should (eq ___ (position ?c "abc")))
- "you can use `find', aliased from `cl-find', to detect
-the position of characters in strings (or elements in sequences)"
- (should (eq ___ (find ?d "abc"))))
+ "you can use `cl-position' to detect the position of characters
+in strings (or elements in sequences)"
+ (should (eq ___ (cl-position ?b "abc")))
+ (should (eq ___ (cl-position ?c "abc")))
+ "you can use `cl-find' to detect the position of characters
+in strings (or elements in sequences)"
+ (should (eq ___ (cl-find ?d "abc"))))
 
 
 (elisp-koans/deftest
  elisp-koans/strings-finding-substrings ()
- "search finds subsequences"
+ "`cl-search' finds subsequences"
  (let ((title "A supposedly fun thing I'll never do again"))
-   (should (eq 2 (search "supposedly" title)))
-   (should (eq 13 (search "CHANGETHISWORD" title)))))
+   (should (eq 2 (cl-search "supposedly" title)))
+   (should (eq 13 (cl-search "CHANGETHISWORD" title)))))
 
 ;;; strings.el ends here

@@ -19,7 +19,7 @@
 (elisp-koans/deftest
  elisp-koans/vectors-types ()
  "`[x y z]' defines a vector literal containing x y z"
- (should (eq ___ (typep [1 11 111] 'vector)))
+ (should (eq ___ (cl-typep [1 11 111] 'vector)))
  (should (eq ___ (aref [1 11 111] 1))))
 
 
@@ -34,7 +34,7 @@
  "define a `bool-vector' literal with four elements, 0, 0, 1 and 1,
 and expand it using `vconcat'"
  (should (equal ___ (vconcat (bool-vector nil t t))))
- (should (eq ___ (typep #&4"	" 'bool-vector)))
+ (should (eq ___ (cl-typep #&4"	" 'bool-vector)))
  (should (eq ___ (aref #&4"	" 1))))
 
 
@@ -60,7 +60,7 @@ and expand it using `vconcat'"
  elisp-koans/vectors-list-to-bool-vector ()
  "you must complete `list-to-bool-vector'"
  (should (bool-vector-p (list-to-bool-vector '(nil nil t t nil))))
- (should-not (aref (list-to-bool-vector '(nil))))
+ (should-not (aref (list-to-bool-vector '(nil)) 0))
  (should (aref (list-to-bool-vector '(nil t)) 1))
  (should (equal 8 (length (list-to-bool-vector '(nil nil t t nil nil t t))))))
 

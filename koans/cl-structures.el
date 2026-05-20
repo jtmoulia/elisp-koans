@@ -79,7 +79,7 @@ This form of inheritance allows composition of objects."
       (should (equal ___ (nba-contract-start-year contract-1)))
       (should (equal ___ (type-of contract-1)))
       ;; do inherited structures follow the rules of type hierarchy?
-      (should (eq ___ (typep contract-1 'basketball-player)))
+      (should (eq ___ (cl-typep contract-1 'basketball-player)))
       ;; can you access structure fields with the inherited accessors?
       (should (equal ___ (nba-contract-team contract-1)))
       (should (equal ___ (basketball-player-team contract-1)))))
@@ -93,10 +93,10 @@ This form of inheritance allows composition of objects."
    ;; manning-1 and manning-2 are different objects
    (should (eq ___ (eq manning-1 manning-2)))
    ;; but manning-1 and manning-2 contain the same information
-   ;; (note the equalp instead of eq
-   (should (eq ___ (equalp manning-1 manning-2)))
+   ;; (note the cl-equalp instead of eq
+   (should (eq ___ (cl-equalp manning-1 manning-2)))
    ;; copied structs are much the same.
-   (should (eq ___ (equalp manning-1 (copy-american-football-player manning-1))))
+   (should (eq ___ (cl-equalp manning-1 (copy-american-football-player manning-1))))
    (should (eq ___ (eq manning-1 (copy-american-football-player manning-1))))
    ;; note that the copying is shallow
    (let ((shallow-copy (copy-american-football-player manning-1)))

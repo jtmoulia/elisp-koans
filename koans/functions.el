@@ -138,7 +138,7 @@ to execute that function immediately, or put it somewhere for later use."
    (push (lambda (a b) (+ a b)) list-of-functions)
    (push (lambda (a b) (* a b)) list-of-functions)
    (push (lambda (a b) (- a b)) list-of-functions)
-   (should (equal ___ (funcall (second list-of-functions) 2 33)))))
+   (should (equal ___ (funcall (cl-second list-of-functions) 2 33)))))
 
 
 (elisp-koans/deftest

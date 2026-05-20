@@ -16,7 +16,7 @@
 
 ;; Relevant emacs info page: `(info "(elisp)Equality Predicates")'
 
-;; the most common equality predicates are eq, eql, equal and equalp
+;; the most common equality predicates are eq, eql, equal and cl-equalp
 ;; eq is similar to comparing c pointers
 
 (elisp-koans/deftest
@@ -29,7 +29,7 @@ value may be returned."
  (should (eq ___ (eq 3 3.0)))
  (should (eq ___ (eq '(1 2) '(1 2))))
  (should (eq ___ (eq "Foo" "Foo")))
- (should (eq ___ (eq "Foo" (copy-seq "Foo"))))
+ (should (eq ___ (eq "Foo" (cl-copy-seq "Foo"))))
  (should (eq ___ (eq "FOO" "Foo"))))
 
 
@@ -45,7 +45,7 @@ numeric of the same type and represent the same number.
  (should (eq ___ (eql '(a b) '(a b))))
  (should (eq ___ (eql ?S ?S)))
  (should (eq ___ (eql "Foo" "Foo")))
- (should (eq ___ (eql "Foo" (copy-seq "Foo"))))
+ (should (eq ___ (eql "Foo" (cl-copy-seq "Foo"))))
  (should (eq ___ (eql "FOO" "Foo"))))
 
 
@@ -62,27 +62,27 @@ x and y character or bit arrays with equal elements"
   (should (eq ___ (equal '(a b) '(a doesnt-match))))
   (should (eq ___ (equal ?S ?S)))
   (should (eq ___ (equal "Foo" "Foo")))
-  (should (eq ___ (equal "Foo" (copy-seq "Foo"))))
+  (should (eq ___ (equal "Foo" (cl-copy-seq "Foo"))))
   (should (eq ___ (equal "FOO" "Foo"))))
 
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-equalp ()
- "(equalp x y) if (equal x y) or
+ "(cl-equalp x y) if (equal x y) or
 if x and y are strings with the same characters (case independent).
 if x and y are arrays with the same dimensions and equal elements
 if x and y are numeric of different types but one may be upgraded to
 the other type without loss and still exhibit equality."
- (should (eq ___ (equalp 'a 'a)))
- (should (eq ___ (equalp 3 3)))
- (should (eq ___ (equalp 3 3.0)))
- (should (eq ___ (equalp '(1 2) '(1 2))))
- (should (eq ___ (equalp  '(a b) '(a b))))
- (should (eq ___ (equalp  '(a b) '(a doesnt-match))))
- (should (eq ___ (equalp ?S ?S)))
- (should (eq ___ (equalp "Foo" "Foo")))
- (should (eq ___ (equalp "Foo" (copy-seq "Foo"))))
- (should (eq ___ (equalp "FOO" "Foo"))))
+ (should (eq ___ (cl-equalp 'a 'a)))
+ (should (eq ___ (cl-equalp 3 3)))
+ (should (eq ___ (cl-equalp 3 3.0)))
+ (should (eq ___ (cl-equalp '(1 2) '(1 2))))
+ (should (eq ___ (cl-equalp  '(a b) '(a b))))
+ (should (eq ___ (cl-equalp  '(a b) '(a doesnt-match))))
+ (should (eq ___ (cl-equalp ?S ?S)))
+ (should (eq ___ (cl-equalp "Foo" "Foo")))
+ (should (eq ___ (cl-equalp "Foo" (cl-copy-seq "Foo"))))
+ (should (eq ___ (cl-equalp "FOO" "Foo"))))
 
 
 (elisp-koans/deftest

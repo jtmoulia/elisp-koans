@@ -1,3 +1,5 @@
+;;; lexical-bindings.el --- Lexical binding koans  -*- lexical-binding: t; -*-
+
 ;;   Copyright 2013 Google Inc.
 ;;
 ;;   Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,11 +20,9 @@
 ;; values.  This means that two functions which close over the same variables
 ;; will always see the same values of those variables if one does a setq.
 
-;; -*- lexical-binding: t; -*-
-
-;; As shown in the line above, `lexical-binding' is set as a buffer local
-;; variable. When set to `t' lexical bindings are enabled in the current buffer,
-;; as opposed to dynamic bindings.
+;; As shown by the cookie at the top of the file, `lexical-binding' is set as a
+;; buffer local variable. When set to `t' lexical bindings are enabled in the
+;; current buffer, as opposed to dynamic bindings.
 ;;
 ;; Relevant emacs info page: `(info "(elisp)Lexical Binding")'
 ;;
@@ -43,12 +43,12 @@ The second takes one parameter, y, and resets x to the value of y."
  "An illustration of how lexical closures may interact."
   (let ((tangled-funs-1 (elisp-koans/two-funs 1))
         (tangled-funs-2 (elisp-koans/two-funs 2)))
-     (should (equal ___ (funcall (first tangled-funs-1))))
-     (funcall (second tangled-funs-1) 0)
-     (should (equal ___ (funcall (first tangled-funs-1))))
+     (should (equal ___ (funcall (cl-first tangled-funs-1))))
+     (funcall (cl-second tangled-funs-1) 0)
+     (should (equal ___ (funcall (cl-first tangled-funs-1))))
 
-     (should (equal ___ (funcall (first tangled-funs-2))))
-     (funcall (second tangled-funs-2) 100)
-     (should (equal ___ (funcall (first tangled-funs-2))))))
+     (should (equal ___ (funcall (cl-first tangled-funs-2))))
+     (funcall (cl-second tangled-funs-2) 100)
+     (should (equal ___ (funcall (cl-first tangled-funs-2))))))
 
 ;;; lexical-bindings.el ends here

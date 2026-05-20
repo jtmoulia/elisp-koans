@@ -9,6 +9,16 @@
 *** Added
 
 *** Changed
+- Migrate koans to =cl-lib= namespaced symbols (=cl-case=, =cl-equalp=,
+  =cl-subseq=, =cl-first=, =cl-typep=, =cl-loop=, =cl-floor=, etc.) so the
+  tests run on modern Emacs (issues #19, #21, #22)
+- Move =lexical-binding= file-local cookie to first line of =elisp-koans.el=
+  and =lexical-bindings.el= so it actually takes effect (issue #12)
+- Fix misplaced paren around =cl-find= in =cl-loops-over-hash-tables=
+- Fix missing index arg in =aref= call in =vectors-list-to-bool-vector=
+- Explicitly =(require 'ert)= in =elisp-koans.el= so =ert-test-boundp= is
+  always available (issue #13)
+- Bump version to 0.6.1
 
 *** Removed
 

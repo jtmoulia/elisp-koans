@@ -23,7 +23,7 @@
  "make a new hash table with `make-hash-table'"
  (let ((my-hash-table))
    (setf my-hash-table (make-hash-table))
-   (should (eq ___ (typep my-hash-table 'hash-table)))
+   (should (eq ___ (cl-typep my-hash-table 'hash-table)))
    (should (eq ___  (hash-table-p my-hash-table)))
    (should (eq ___  (hash-table-p '(3 3 3))))
    (should (eq ___ (hash-table-count my-hash-table)))))
@@ -87,7 +87,7 @@ The programmer must be careful to know which equality predicate is right."
    (setf (gethash "two" h2) "yi")
    (should (eq ___ (eq h1 h2)))
    (should (eq ___ (equal h1 h2)))
-   (should (eq ___ (equalp h1 h2)))))
+   (should (eq ___ (cl-equalp h1 h2)))))
 
 
 (elisp-koans/deftest
