@@ -9,6 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Run inside the official Emacs images rather than a setup action, so the
+    # matrix needs no third-party actions -- only actions/checkout, which is
+    # published by GitHub.
+    container: silex/emacs:${{ matrix.emacs_version }}
     strategy:
       fail-fast: false
       matrix:
@@ -17,25 +21,21 @@ jobs:
           - '28.2'
           - '29.4'
           - '30.1'
-          - snapshot
+          - 'master'
     name: emacs ${{ matrix.emacs_version }}
     steps:
+      # Must come before checkout: the images are minimal and actions/checkout
+      # wants git.
+      - name: Install prerequisites
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends git make ca-certificates
+
       - uses: actions/checkout@v4
 
-      - uses: purcell/setup-emacs@master
-        with:
-          version: ${{ matrix.emacs_version }}
-
-      - name: Install dependencies
+      - name: Install dash
         run: |
-          emacs -Q --batch \
-            --eval "(progn
-                      (require 'package)
-                      (add-to-list 'package-archives
-                                   '(\"melpa\" . \"https://melpa.org/packages/\") t)
-                      (package-initialize)
-                      (package-refresh-contents)
-                      (package-install 'dash))"
+          emacs -Q --batch --eval "(progn (require 'package) (add-to-list 'package-archives '(\"melpa\" . \"https://melpa.org/packages/\") t) (package-initialize) (package-refresh-contents) (package-install 'dash))"
 
       - name: Byte-compile
         run: make compile
