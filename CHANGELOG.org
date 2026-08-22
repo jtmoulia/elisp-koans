@@ -7,8 +7,45 @@
   
 ** Unreleased
 *** Added
+- =cheatsheet/= directory holding the filled-in solutions, replacing the
+  =cheatsheet= branch (#8)
+- =elisp-koans/load-cheatsheet= for loading the solutions, and an optional
+  DIRECTORY argument on =elisp-koans/load-groups= and =elisp-koans/run-tests=
+- =elisp-koans/run-tests-batch= for running the koans non-interactively
+- =elisp-koans-directory= and =elisp-koans-cheatsheet-directory= customizable
+  variables, replacing the internal =elisp-koans--groups-directory=
+- GitHub Actions CI running the cheatsheet on Emacs 27.2 through snapshot
+- =Makefile= with =test=, =test-cheatsheet= and =compile= targets
+- =test/test-cheatsheet.el=, which fails if a koan is added, renamed or
+  reordered without the cheatsheet following along
 
 *** Changed
+- Adapt koans to Emacs Lisp where they still taught Common Lisp:
+  - =special-forms.el= now sets =lexical-binding=, and a new koan shows that
+    binding is a property of the symbol -- =let= binds a =defvar='d symbol
+    dynamically and a plain local lexically. The =let= docstring no longer
+    claims to establish a lexical extent while demonstrating the opposite
+  - =equality-distinctions=: =(= (/ 2 3) (/ 6 9) (/ 86 129))= was a lesson
+    about Common Lisp ratios that passed in elisp only because =/= truncates
+    to =0=. It now teaches integer versus float division
+  - =equality-distinctions=: say that =string-equal= is an alias for =string==
+    and therefore case sensitive, unlike its Common Lisp namesake
+  - New koan: Emacs's =mapcar= takes exactly one sequence, unlike Common
+    Lisp's -- use =cl-mapcar= or =seq-mapn= for several
+  - =hash-tables=: teach the =DEFAULT= argument to =gethash=, which is how
+    elisp distinguishes a missing key from a nil value without multiple values
+  - =strings=: =cl-find= returns the element, not its index, and the koan
+    said otherwise. Also introduces =seq-position=
+  - =vectors=: the =#&4"..."= bool-vector literal is explained rather than
+    used opaquely -- its docstring described the wrong four booleans
+  - =special-forms=: =let*-bindings-are-series= used two symbols that were
+    never declared
+- Register =lexical-bindings= in =elisp-koans-groups=. The file has never been
+  loaded or run, so its koans were unreachable
+- Give =hash-tables-make-your-own= blanks to fill in. It had none, and =colors=
+  was hard-coded empty, so the koan could not be solved as written
+- Resolve koan paths relative to =elisp-koans.el= rather than
+  =default-directory=, so the koans load from any working directory
 - Migrate koans to =cl-lib= namespaced symbols (=cl-case=, =cl-equalp=,
   =cl-subseq=, =cl-first=, =cl-typep=, =cl-loop=, =cl-floor=, etc.) so the
   tests run on modern Emacs (issues #19, #21, #22)

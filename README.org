@@ -50,9 +50,30 @@
 
 ** The Cheatsheet
 
-   You can check your answers against the cheatsheet, i.e. a branch called
-   =cheatsheet= which has the koan solutions filled in. This branch is kept up
-   to date by staying one commit ahead of =master=
+   You can check your answers against the [[file:cheatsheet/][cheatsheet]], a directory holding a
+   filled-in copy of every koan.
+
+   To read a single solution, just open the matching file, e.g.
+   =cheatsheet/lists.el= alongside =koans/lists.el=. To load the solutions into
+   Emacs instead of your own answers, run =elisp-koans/load-cheatsheet=; run
+   =elisp-koans/load-groups= to go back to the koans.
+
+   The cheatsheet used to live on a branch of its own, which drifted out of
+   sync with =master=. It is now a directory, and CI runs it on every push:
+   the koans are only known to work because their solutions pass.
+
+** Development
+
+   #+BEGIN_SRC sh
+     make test-cheatsheet   # run every solution -- all koans must pass
+     make test              # unit tests, including koan/cheatsheet sync checks
+     make compile           # byte-compile elisp-koans.el
+   #+END_SRC
+
+   =make test-cheatsheet= is the real test suite. If you add or change a koan,
+   update =cheatsheet/= to match in the same commit -- =make test= will tell
+   you if a koan has been added, renamed or reordered without the cheatsheet
+   following along.
 
 ** Credits
 
