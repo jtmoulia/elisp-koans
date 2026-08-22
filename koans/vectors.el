@@ -31,11 +31,17 @@
 
 (elisp-koans/deftest
  elisp-koans/vectors-bool ()
- "define a `bool-vector' literal with four elements, 0, 0, 1 and 1,
-and expand it using `vconcat'"
+ "`bool-vector' builds a vector of booleans, which `vconcat' expands
+into an ordinary vector."
  (should (equal ___ (vconcat (bool-vector nil t t))))
- (should (eq ___ (cl-typep #&4"	" 'bool-vector)))
- (should (eq ___ (aref #&4"	" 1))))
+ "bool vectors have a read syntax too: #&LENGTH\"BYTES\", where the bits
+of each byte are read low bit first.  A tab is ASCII 9, or 1001, so the
+literal below is four booleans -- but you would have to work that out
+every time you read it, which is why `bool-vector' is the better way to
+write one down."
+ (should (eq ___ (equal #&4"	" (bool-vector t nil nil t))))
+ (should (eq ___ (cl-typep (bool-vector t nil nil t) 'bool-vector)))
+ (should (eq ___ (aref (bool-vector t nil nil t) 1))))
 
 
 (elisp-koans/deftest

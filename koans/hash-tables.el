@@ -44,7 +44,15 @@
    (should (equal ___ (hash-table-count table-of-cube-roots)))
 
    "accessing unset keys returns nil"
-   (should (equal ___ (gethash 125 table-of-cube-roots)))))
+   (should (equal ___ (gethash 125 table-of-cube-roots)))
+
+   "Common Lisp's `gethash' returns a second value saying whether the key
+was present.  Emacs Lisp has no multiple values, so it takes a DEFAULT
+argument instead -- that is how you tell a missing key from one whose
+value really is nil"
+   (setf (gethash :nothing-here table-of-cube-roots) nil)
+   (should (equal ___ (gethash :nothing-here table-of-cube-roots :missing)))
+   (should (equal ___ (gethash :never-set table-of-cube-roots :missing)))))
 
 
 (elisp-koans/deftest
@@ -107,8 +115,10 @@ The programmer must be careful to know which equality predicate is right."
 (elisp-koans/deftest
  elisp-koans/hash-tables-make-your-own ()
  "make a hash table that meets the following conditions"
- (let ((colors (make-hash-table))
+ (let ((colors ___)
        values)
+   "you will need to modify your hash table after you create it"
+   ____
    (should (equal (hash-table-count colors) 4))
    (setf values (list (gethash "blue" colors)
                       (gethash "green" colors)
