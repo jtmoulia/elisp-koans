@@ -1,0 +1,12 @@
+name: smoke
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "runner reached"
