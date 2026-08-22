@@ -112,7 +112,7 @@
                     using (hash-value v)
                     collect (list k v))))
       (should (eq ___ (length pairs-in-table)))
-      (should (eq ___ (find '("The Hobbit" "Bilbo")) pairs-in-table :test #'equal)))))
+      (should (eq ___ (cl-find '("The Hobbit" "Bilbo") pairs-in-table :test #'equal))))))
 
 
 (elisp-koans/deftest
@@ -151,7 +151,7 @@
  "`cl-loop' uses `when' for conditional evaluation."
  (let ((loop-return
         (cl-loop for x in '(1 1 2 3 5 8 13)
-                 when (evenp x) sum x)))
+                 when (cl-evenp x) sum x)))
    (should (equal ___ loop-return))))
 
 

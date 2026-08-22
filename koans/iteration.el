@@ -27,17 +27,17 @@
 variable in turn"
  (let* ((some-primes '(10301 11311 19991 999565999))
         (how-many-in-list 0)
-        (biggest-in-list (first some-primes)))
+        (biggest-in-list (cl-first some-primes)))
    "this dolist loops over some-primes, defined above"
    (dolist (one-prime some-primes)
      (if (> one-prime biggest-in-list)
          (setf biggest-in-list one-prime))
-     (incf how-many-in-list))
+     (cl-incf how-many-in-list))
    (should (equal ___ how-many-in-list))
    (should (equal ___ biggest-in-list)))
  (let ((sum 0))
    "write your own dolist here to calculate the sum of some-primes"
-   "you may be interested in investigating the 'incf' function"
+   "you may be interested in investigating the `cl-incf' function"
    ;; (dolist ... )
    (should (eq 999607602 sum))))
 
@@ -74,13 +74,13 @@ a global value."
 
 (elisp-koans/deftest
  elisp-koans/iteration-loop-until-return ()
- "`loop' loops forever, unless some return condition is executed.
+ "`cl-loop' loops forever, unless some return condition is executed.
 Note that the loop macro includes many additional options, which
 will be covered in a future koan."
  (let ((loop-counter 0))
-   (loop
-    (incf loop-counter)
-    (if (>= loop-counter 100) (return loop-counter)))
+   (cl-loop
+    (cl-incf loop-counter)
+    (if (>= loop-counter 100) (cl-return loop-counter)))
    (should (equal ___ loop-counter))))
 
 
@@ -88,7 +88,7 @@ will be covered in a future koan."
  elisp-koans/iteration-mapcar ()
  "`mapcar' takes a list and a function.  It returns a new list
 with the function applied to each element of the input"
-  (let ((mc-result (mapcar #'evenp '(1 2 3 4 5))))
+  (let ((mc-result (mapcar #'cl-evenp '(1 2 3 4 5))))
     (should (equal ___ mc-result))))
 
 ;; ----
@@ -96,15 +96,15 @@ with the function applied to each element of the input"
 
 (defun vowelp (c)
   "Return true if `c' is a vowel."
-  (find c "AEIOUaeiou"))
+  (cl-find c "AEIOUaeiou"))
 
 (defun vowels-to-xs (my-string)
   "Convert all vowels in a string to the character `x'."
-  (coerce
-   (loop for c across my-string
-         with new-c
-         do (setf new-c (if (vowelp c) ?x c))
-         collect new-c)
+  (cl-coerce
+   (cl-loop for c across my-string
+            with new-c
+            do (setf new-c (if (vowelp c) ?x c))
+            collect new-c)
    'string))
 
 (elisp-koans/deftest

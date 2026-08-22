@@ -108,16 +108,16 @@ on earlier ones."
    (should (equal elisp-koans-c (+ elisp-koans-a (/ elisp-koans-b elisp-koans-a))))))
 
 ;; Relevant emacs info page: `(info "(cl)Conditionals")'
-;; Note that `case' is an alias of `cl-case'
+;; In cl-lib, the conditional form is `cl-case'.
 
 (elisp-koans/deftest
  elisp-koans/special-forms-case ()
- "the `case' form is like the `switch' statement: it compares an
+ "the `cl-case' form is like the `switch' statement: it compares an
 input with a set of values and evaluates an expression once a
 match is found"
  (setf elisp-koans-a 4)
  (setf elisp-koans-b
-       (case elisp-koans-a
+       (cl-case elisp-koans-a
          (4 :four)
          (5 :five)
          ;; t specifies default behavior
@@ -126,7 +126,7 @@ match is found"
  "case can also check if a list of values contains
    the input"
  (setf elisp-koans-c
-       (case elisp-koans-a
+       (cl-case elisp-koans-a
          (5 :five)
          ((3 4) :three-or-four)))
  (should (equal ___ elisp-koans-c)))
@@ -134,7 +134,7 @@ match is found"
 
 (defun elisp-koans/cartoon-dads (input)
   "you should be able to complete this case statement"
-  (case input
+  (cl-case input
     (:this-one-doesnt-happen :fancy-cat)
     (t :unknown)))
 
@@ -152,7 +152,7 @@ match is found"
 it uses the function eql for comparisons. We will explore
 the implications of this in the equality-distinctions lesson"
  (let* ((name "John")
-        (lastname (case name
+        (lastname (cl-case name
                     ("John" "Doe")
                     ("Max" "Mustermann")
                     (t "Anonymous"))))

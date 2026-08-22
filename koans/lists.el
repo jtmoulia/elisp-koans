@@ -89,9 +89,9 @@ element of a list."
  "`last' returns a singleton list of the final element.
 `elt' is similar to `nth', with the arguments reversed."
  (let ((noms '("peanut" "butter" "and" "jelly")))
-   (should (equal "peanut" (first noms)))
-   (should (equal ___ (second noms)))
-   (should (equal ___ (fourth noms)))
+   (should (equal "peanut" (cl-first noms)))
+   (should (equal ___ (cl-second noms)))
+   (should (equal ___ (cl-fourth noms)))
    (should (equal ___ (last noms)))
    (should (equal "butter" (nth 1 noms))) ; k 1
    (should (equal ___ (nth 0 noms)))
@@ -101,17 +101,17 @@ element of a list."
 
 (elisp-koans/deftest
  elisp-koans/lists-slicing ()
- "Use `subseq' to slice a list."
+ "Use `cl-subseq' to slice a list."
  (let ((noms '("peanut" "butter" "and" "jelly")))
-   (should (equal ___ (subseq noms 0 1)))
-   (should (equal ___ (subseq noms 0 2)))
-   (should (equal ___ (subseq noms 2 2)))
-   (should (equal ___ (subseq noms 2)))))
+   (should (equal ___ (cl-subseq noms 0 1)))
+   (should (equal ___ (cl-subseq noms 0 2)))
+   (should (equal ___ (cl-subseq noms 2 2)))
+   (should (equal ___ (cl-subseq noms 2)))))
 
 
 (elisp-koans/deftest
  elisp-koans/lists-breakdown ()
- "`car' (aka. 'first') returns the first value in a list"
+ "`car' (aka. `cl-first') returns the first value in a list"
  (should (equal ___ (car '(1 2 3))))
  (should (equal ___ (car nil)))
  "cdr (aka. 'rest') refers to the remainder of the list,

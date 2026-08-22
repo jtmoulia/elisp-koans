@@ -60,9 +60,9 @@ but evaluating the form '(+ 1 2) returns the list (+ 1 2)"
   (should (equal ___ (listp nil)))
   (should (equal ___ (listp (+ 1 2))))
   (should (equal ___ (listp '(+ 1 2))))
-  "equalp is an equality predicate"
-  (should (equal ___ (equalp 3 (+ 1 2))))
+  "cl-equalp is an equality predicate"
+  (should (equal ___ (cl-equalp 3 (+ 1 2))))
   "the '(xyz ghi) syntax is syntactic sugar for the (QUOTE (xyz ghi)) function."
-  (should (eq ___ (equalp '(/ 4 0) (quote (/ 4 0))))))
+  (should (eq ___ (cl-equalp '(/ 4 0) (quote (/ 4 0))))))
 
 ;;; evalation.el ends here

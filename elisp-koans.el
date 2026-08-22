@@ -1,7 +1,7 @@
-;;; elisp-koans.el --- Koans for learning elisp
+;;; elisp-koans.el --- Koans for learning elisp  -*- lexical-binding: t; -*-
 ;;
 ;; Author: Thomas Moulia <jtmoulia@pocketknife.io>
-;; Version: 0.6.0
+;; Version: 0.6.1
 ;; Keywords: elisp, educational
 ;; URL: https://github.com/jtmoulia/elisp-koans
 
@@ -10,10 +10,9 @@
 ;; Elisp-koans provides a set of a set of tests which you can fix as a tour of
 ;; elisp.
 
-;; -*- lexical-binding: t; -*-
-
 (require 'cl-lib)
 (require 'dash)
+(require 'ert)
 
 (defconst elisp-koans--blanks '(__ ___ ____))
 (defconst elisp-koans--groups-directory (expand-file-name "koans/")

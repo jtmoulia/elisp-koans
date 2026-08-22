@@ -24,32 +24,32 @@ This is distinct from returning a list or structure of values."
    "`floor' returns a single value"
    (setf x (floor 1.5))
    (should (eq x 1))
-   "`floor*' returns multiple values"
-   (setf x (multiple-value-list (floor* 1.5)))
+   "`cl-floor' returns multiple values"
+   (setf x (cl-multiple-value-list (cl-floor 1.5)))
    (should (equal x '(1 0.5))))
- (should (equal ___ (multiple-value-list (floor* (/ 99.0 4))))))
+ (should (equal ___ (cl-multiple-value-list (cl-floor (/ 99.0 4))))))
 
 
 (defun next-fib (a b)
-  (values b (+ a b)))
+  (cl-values b (+ a b)))
 
 (elisp-koans/deftest
  elisp-koans/multiple-values-bind ()
- "multiple-value-bind binds the variables in the first form to
+ "`cl-multiple-value-bind' binds the variables in the first form to
 the outputs of the second form. And then returns the output of
 the third form using those bindings"
  (let ((x)
        (y))
    (setf x (next-fib 2 3))
    (should (equal ___ x))
-   (setf x (multiple-value-list (next-fib 2 3)))
+   (setf x (cl-multiple-value-list (next-fib 2 3)))
    (should (equal ___ x))
-   (setf y (multiple-value-bind (b c) (next-fib 3 5) (* b c)))
+   (setf y (cl-multiple-value-bind (b c) (next-fib 3 5) (* b c)))
    (should (equal ___ y))
-   "multiple-value-setq is like setf, but can set multiple variables"
-   (multiple-value-setq (x y) (values :v1 :v2))
+   "`cl-multiple-value-setq' is like setf, but can set multiple variables"
+   (cl-multiple-value-setq (x y) (cl-values :v1 :v2))
    (should (equal '(:v1 :v2) (list x y)))
-   (multiple-value-setq (x y) (next-fib 5 8))
+   (cl-multiple-value-setq (x y) (next-fib 5 8))
    (should (equal ___ (list x y)))))
 
 ;;; multiple-values.el ends here
