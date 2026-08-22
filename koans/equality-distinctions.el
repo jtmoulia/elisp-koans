@@ -87,11 +87,17 @@ the other type without loss and still exhibit equality."
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-numeric-equal ()
- "(= x y) is only for numerics and can take multiple arguments
-if x or y is not numeric there will be a compiler error."
+ "(= x y) is only for numerics and can take multiple arguments.
+Passing a non-number signals `wrong-type-argument'."
  (should (eq ___ (= 99.0 99 99.000)))
  (should (eq ___ (= 0 1 -1)))
- (should (eq ___ (= (/ 2 3) (/ 6 9) (/ 86 129)))))
+ "unlike Common Lisp, Emacs Lisp has no ratios: `/' on two integers
+truncates toward zero, so these are all the same number"
+ (should (equal ___ (/ 2 3)))
+ (should (eq ___ (= (/ 2 3) (/ 6 9) (/ 86 129))))
+ "make one argument a float and you get float division instead"
+ (should (equal ___ (/ 2.0 3)))
+ (should (eq ___ (= (/ 2 3) (/ 2.0 3)))))
 
 
 ;; EQ, EQL, EQUAL, and EQUALP are general equality predicates.
@@ -100,7 +106,8 @@ if x or y is not numeric there will be a compiler error."
 
 (elisp-koans/deftest
  elisp-koans/equality-distinctions-test-string-equal ()
- "string-equal is just like string=."
+ "unlike Common Lisp, `string-equal' is just another name for `string=',
+so both of them are case sensitive."
  (should (eq ___ (string= "Foo" "Foo")))
  (should (eq ___ (string= "Foo" "FOO")))
  (should (eq ___ (string-equal "Foo" "FOO"))))

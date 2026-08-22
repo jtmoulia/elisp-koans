@@ -88,12 +88,14 @@
 
 (elisp-koans/deftest
  elisp-koans/strings-searching-for-characters ()
- "you can use `cl-position' to detect the position of characters
-in strings (or elements in sequences)"
+ "`cl-position' returns the index of an element in a sequence"
  (should (eq ___ (cl-position ?b "abc")))
  (should (eq ___ (cl-position ?c "abc")))
- "you can use `cl-find' to detect the position of characters
-in strings (or elements in sequences)"
+ "`seq-position' is the built-in equivalent, and works on any sequence"
+ (should (eq ___ (seq-position "abc" ?b)))
+ "`cl-find' returns the element itself rather than its index, and nil
+when the element isn't there"
+ (should (eq ___ (cl-find ?b "abc")))
  (should (eq ___ (cl-find ?d "abc"))))
 
 

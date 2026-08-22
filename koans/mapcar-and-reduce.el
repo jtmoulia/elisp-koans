@@ -25,6 +25,18 @@
 
 
 (elisp-koans/deftest
+ elisp-koans/mapcar-over-several-lists ()
+ "Common Lisp's `mapcar' walks any number of lists at once.  Emacs Lisp's
+takes exactly one, so reach for `cl-mapcar' when you need to walk
+several of them in step."
+ (should (equal ___ (mapcar #'1+ '(1 2 3))))
+ (should-error (mapcar #'+ '(1 2 3) '(10 20 30)) :type ___)
+ (should (equal ___ (cl-mapcar #'+ '(1 2 3) '(10 20 30))))
+ "`seq-mapn' is the built-in equivalent, and works on any sequence"
+ (should (equal ___ (seq-mapn #'+ '(1 2 3) '(10 20 30)))))
+
+
+(elisp-koans/deftest
  elisp-koans/reduce-basics ()
  "The `cl-reduce' function combines the elements of a list, from left to right,
 by applying a binary function to the list elements."

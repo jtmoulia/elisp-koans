@@ -1,3 +1,5 @@
+;;; special-forms.el --- Special form koans  -*- lexical-binding: t; -*-
+
 ;;   Copyright 2013 Google Inc.
 ;;
 ;;   Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,10 +47,9 @@ variables with lexical or dynamic scope."
 
 (elisp-koans/deftest
  elisp-koans/special-forms-let ()
-  "The `let' form establishes a lexical extent, within which
-explicit symbols may be bound to values. The binding only extends
-over the extent of the lexical form. After which, the previous
-value, if it exists, is visible again."
+  "The `let' form binds symbols to values for the extent of its body.
+Once the body is done the previous value, if there was one, is
+visible again."
   (setf elisp-koans-a 10)
   (setf elisp-koans-b 20)
   (should (equal elisp-koans-a ___))
@@ -59,6 +60,30 @@ value, if it exists, is visible again."
     (should (equal elisp-koans-b ___)))
   (should (equal elisp-koans-a ___))
   (should (equal elisp-koans-b ___)))
+
+
+(defun elisp-koans//peek-at-a ()
+  "Return whatever `elisp-koans-a' is bound to right now."
+  elisp-koans-a)
+
+(elisp-koans/deftest
+ elisp-koans/special-forms-let-lexical-or-dynamic ()
+ "Whether `let' binds lexically or dynamically is a property of the
+symbol, not of the `let'.  This file sets `lexical-binding' to t, so a
+plain local is lexical -- it is visible only to code written inside the
+body.  But `elisp-koans-a' was declared with `defvar' near the top of
+this file, which makes it special, and `let' binds a special symbol
+dynamically: every function called from the body sees the new value
+too."
+ (setf elisp-koans-a :global)
+ (let ((elisp-koans-a :rebound)
+       (plain-local :lexical))
+   "`elisp-koans//peek-at-a' is defined outside this `let', yet it sees
+the rebound value"
+   (should (eq ___ (elisp-koans//peek-at-a)))
+   (should (eq ___ plain-local)))
+ "and once the `let' is done the global value is back"
+ (should (eq ___ (elisp-koans//peek-at-a))))
 
 
 (elisp-koans/deftest
@@ -81,11 +106,11 @@ on earlier ones."
 (elisp-koans/deftest
  elisp-koans/special-forms-let*-bindings-are-series ()
  "let* is like let, but successive bindings may use values of previous ones"
- (setf a 100)
- (let* ((a 5)
-        (b (* 10 a)))
-   (should (equal b ___)))
- (should (equal a ___)))
+ (let ((x 100))
+   (let* ((x 5)
+          (y (* 10 x)))
+     (should (equal y ___)))
+   (should (equal x ___))))
 
 
 (elisp-koans/deftest
